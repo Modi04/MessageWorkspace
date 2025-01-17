@@ -1,35 +1,6 @@
+// 기존 코드
 import express, { Request, Response } from "express";
-
-// DB의 타입 정의
-interface Profile {
-  calimeroAddress: string;
-  name: string;
-  image: string;
-  description: string;
-}
-
-interface Post {
-  id: string;
-  uploaderAddress: string;
-  title: string;
-  contents: string;
-  createdAt: string;
-}
-
-interface RequestEntity {
-  sender: string;
-  receiver: string;
-  postId: string;
-  purpose: string;
-  requestStatus: string;
-  createdAt: string;
-}
-
-interface Database {
-  profiles: Profile[];
-  posts: Post[];
-  requests: RequestEntity[];
-}
+import { Profile, Post, RequestEntity, Database } from "./types";
 
 // 메모리 기반 데이터베이스
 let db: Database = {
@@ -59,6 +30,18 @@ app.get("/posts", (_req: Request, res: Response) => {
 
 app.get("/requests", (_req: Request, res: Response) => {
   res.json(db.requests);
+});
+
+// 특정 Post를 ID로 조회하는 API
+app.get("/posts/:id", (req: Request<{ id: string }>, res: Response) => {
+  const { id } = req.params;
+  const post = db.posts.find((p) => p.id === id);
+
+  if (post) {
+    res.json(post);
+  } else {
+    res.status(404).json({ error: "Post not found" });
+  }
 });
 
 // DB 쓰기 함수들
