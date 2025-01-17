@@ -1,9 +1,12 @@
 import { useRouter } from 'next/router';
-import Menu from '../components/Menu';
-import Header from '../components/Header';
 
-export default function Index() {
+import { useEffect } from 'react';
+
+export default function Friends() {
   const router = useRouter();
 
-  return <div className="text-white flex bg-black"></div>;
+  useEffect(() => {
+    router.push('/friends');
+  }, []);
+  return <div></div>;
 }

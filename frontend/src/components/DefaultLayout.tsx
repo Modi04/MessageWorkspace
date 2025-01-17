@@ -1,6 +1,6 @@
 // DefaultLayout.tsx
 import Menu from '../components/Menu';
-import Header from '../components/Header';
+import Footer from './Footer';
 
 export default function DefaultLayout({
   children,
@@ -8,17 +8,9 @@ export default function DefaultLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="text-white flex">
-      {/* Fixed Menu */}
-      <Menu />
-
-      {/* Main Content */}
-      <div className="flex-1">
-        <Header />
-        <div className="pt-10 pl-[calc(25%)] w-full h-full relative">
-          {children}
-        </div>
-      </div>
+    <div className="w-full h-screen bg-white text-white">
+      <Footer />
+      <div>{children}</div>
     </div>
   );
 }
