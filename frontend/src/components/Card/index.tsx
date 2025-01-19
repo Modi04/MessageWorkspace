@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { BsThreeDotsVertical } from "react-icons/bs";
+import { BsThreeDotsVertical } from 'react-icons/bs';
 
 type Message = {
   profile: string;
@@ -23,7 +23,7 @@ const Card: React.FC<CardProps> = ({ message }) => {
         <div>{message.name}</div>
         <div>{message.description}</div>
       </div>
-      <div className=''>
+      <div className="">
         <BsThreeDotsVertical />
       </div>
     </div>

@@ -8,7 +8,7 @@ export default function DefaultLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="w-full h-screen bg-white text-white">
+    <div className="w-full h-screen bg-black text-white">
       <Footer />
       <div>{children}</div>
     </div>
