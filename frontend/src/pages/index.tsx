@@ -1,12 +1,26 @@
 import { useRouter } from 'next/router';
-
 import { useEffect } from 'react';
 
-export default function Friends() {
+export default function Index() {
   const router = useRouter();
 
-  useEffect(() => {
-    router.push('/friends');
-  }, []);
-  return <div></div>;
+  return (
+    <div className="flex h-screen items-center justify-center">
+      <div className="flex flex-col items-center">
+        <div className="w-[200px] h-[100px] bg-black"></div>
+        <button
+          className="mt-4 w-full bg-green-500 text-black px-4 py-2"
+          onClick={() => router.push('/setup')}
+        >
+          Login with Admin Dashboard!
+        </button>
+        <button
+          className="mt-4 w-full bg-green-500 text-black px-4 py-2"
+          onClick={() => router.push('/customlogin')}
+        >
+          Idealized Login!
+        </button>
+      </div>
+    </div>
+  );
 }

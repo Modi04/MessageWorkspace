@@ -18,7 +18,14 @@ export const clearApplicationId = () => {
 };
 
 export const setAppEndpointKey = (url: string) => {
-  localStorage.setItem(APP_URL, JSON.stringify(url));
+  if (process.env['NEXT_PUBLIC_ENDPOINT_URL']) {
+    localStorage.setItem(
+      APP_URL,
+      JSON.stringify(process.env['NEXT_PUBLIC_ENDPOINT_URL']),
+    );
+  } else {
+    localStorage.setItem(APP_URL, JSON.stringify(url));
+  }
 };
 
 export const getAppEndpointKey = (): string | null => {
