@@ -1,30 +1,45 @@
-// DB의 타입 정의
-export interface Profile {
-  calimeroAddress: string;
-  name: string;
-  image: string;
+export interface User {
+  address: string;
+  contexts: string[];
+}
+
+export interface Context {
+  id : string;
+  name : string;
+  members: string[];
+  chatRooms: string[];
+  messages: string[];
+}
+
+export interface Member {
+  identity: Identity;
+  access: string;
+}
+
+export interface Identity {
+  id: string;
+  address : string;
+  profileImageUrl: string;
   description: string;
 }
 
-export interface Post {
-  id: string;
-  uploaderAddress: string;
-  title: string;
-  contents: string;
-  createdAt: string;
+export interface ChatRoom {
+  chatRoomId: string;
+  name: string;
 }
 
-export interface RequestEntity {
-  sender: string;
-  receiver: string;
-  postId: string;
-  purpose: string;
-  requestStatus: string;
+export interface Message {
+  messageId: string;
+  chatRoomId: string;
+  userId: string;
+  content: string;
   createdAt: string;
 }
 
 export interface Database {
-  profiles: Profile[];
-  posts: Post[];
-  requests: RequestEntity[];
+  contexts: { [id: string]: Context };
+  users: { [id: string]: User };
+  chats: { [id: string]: ChatRoom };
+  messages: { [id: string]: Message };
+  identities:  { [id: string] : Identity };
 }
