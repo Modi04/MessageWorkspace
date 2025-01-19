@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import Card from './Card';
+import { profileExample } from '../db/userProfile';
 
 export default function UserList({ contents }) {
   const router = useRouter();
@@ -10,10 +11,9 @@ export default function UserList({ contents }) {
         <div className="text-[18px] font-bold border-b border-green-300 pb-3 text-white">
           Select your {contents}
         </div>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
+        {profileExample.map((message, index) => (
+          <Card key={index} message={message} />
+        ))}
       </div>
     </div>
   );
