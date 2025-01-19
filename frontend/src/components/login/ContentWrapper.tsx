@@ -7,7 +7,7 @@ export default function ContentWrapper({
 }) {
   return (
     <div className="flex w-full h-screen justify-center bg-[#111111]">
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col justify-center items-center text-black">
         {children}
       </div>
     </div>
