@@ -7,7 +7,7 @@ export default function Index() {
 
   return (
     <div className="bg-black">
-      <div className="text-white text-3xl mb-5 mt-3">Friends</div>
+      <div className="text-[#E6E0E9] text-3xl mb-5 mt-3">Friends</div>
       {profileExample.map((message, index) => (
         <Card key={index} message={message} />
       ))}
