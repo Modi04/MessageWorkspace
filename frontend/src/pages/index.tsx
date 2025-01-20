@@ -12,13 +12,13 @@ export default function Index() {
           className="mt-4 w-full bg-green-500 text-black px-4 py-2"
           onClick={() => router.push('/setup')}
         >
-          Login with Admin Dashboard!
+          V1 Login (Using admin dashboard)
         </button>
         <button
           className="mt-4 w-full bg-green-500 text-black px-4 py-2"
           onClick={() => router.push('/setProfile')}
         >
-          Idealized Login!
+          V2 Login!
         </button>
       </div>
     </div>
