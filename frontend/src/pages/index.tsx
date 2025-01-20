@@ -16,7 +16,7 @@ export default function Index() {
         </button>
         <button
           className="mt-4 w-full bg-green-500 text-black px-4 py-2"
-          onClick={() => router.push('/customlogin')}
+          onClick={() => router.push('/setProfile')}
         >
           Idealized Login!
         </button>
