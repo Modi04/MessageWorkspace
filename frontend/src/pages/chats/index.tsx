@@ -14,7 +14,12 @@ export default function Index() {
   useEffect(() => {
     if (isSelected) {
       router.push({
-        pathname: `/messages/${identity}and${friendsIdentity}`, // 이동할 경로
+        pathname: '/messages',
+        query: {
+          identity: identity,
+          friendsIdentity: friendsIdentity,
+        },
+        // 이동할 경로
       });
     }
   }, [isSelected]);

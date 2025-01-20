@@ -4,23 +4,15 @@ import { messagesExample } from '../../db/messages';
 import MessageBox from './MessageBox';
 const MessagePage = () => {
   const router = useRouter();
-  const { id } = router.query;
-  const [user, setUser] = useState('');
-  const [friend, setFriend] = useState('');
-
-  useEffect(() => {
-    const [userId, friendsId] = ((id as string) || '').split('and');
-    setUser(userId);
-    setFriend(friendsId);
-  }, [id]);
+  const { identity, friendsIdentity } = router.query;
 
   return (
     <div>
-      <div className="fixed flex w-full items-center justify-between p-4 bg-[#1C1C1D] text-white">
+      <div className="fixed flex w-full max-w-[600px] items-center justify-between p-4 bg-[#1C1C1D] text-white">
         <button
           className="text-lg font-bold flex items-center justify-center w-10 h-10 bg-[#787878] rounded-full"
           onClick={() =>
-            router.push({ pathname: '/chats', query: { identity: user } })
+            router.push({ pathname: '/chats', query: { identity: identity } })
           }
         >
           ←
@@ -32,11 +24,12 @@ const MessagePage = () => {
       </div>
       <div className="p-4 pt-[90px]">
         <div className="space-y-4">
-          {messagesExample.map((message) => (
+          {messagesExample.map((message, idx) => (
             <MessageBox
               key={message.messageId}
-              isUser={message.userId === user}
-              profile={message.userId === friend ? 'F' : 'U'} // 임의로 프로필 이니셜 설정
+              // isUser={message.userId === identity}
+              isUser={idx % 2 == 0}
+              profile={message.userId === friendsIdentity ? 'F' : 'U'} // 임의로 프로필 이니셜 설정
               contents={message.content}
             />
           ))}
