@@ -1,13 +1,15 @@
-export interface Comment {
-  text: string;
-  user: string;
+export interface Chat {
+  id: string;
+  context: string;
+  name: string;
 }
 
-export interface Post {
+export interface Message {
   id: string;
-  title: string;
+  chatId: string;
+  userId: string;
   content: string;
-  comments: Comment[];
+  createdAt: string;
 }
 
 export interface JsonWebToken {

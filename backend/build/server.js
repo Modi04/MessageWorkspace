@@ -21,19 +21,19 @@ exports.db = {
 function initializeDatabase() {
     exports.db.users = {
         "0x123456789abcdef": {
-            context: ["0x987654321abcdef", "0xabcdef987654321"],
+            context: ["5kDKpdUdth7y3EWqnu99LCcuT9jLYYQpBWJ3X5LuPhCr", "0xabcdef987654321"],
         },
         "0xabcdef123456789": {
             context: ["0x987654321abcdef"],
         },
     };
     exports.db.contexts = {
-        "0x987654321abcdef": {
-            id: "0x987654321abcdef",
+        "5kDKpdUdth7y3EWqnu99LCcuT9jLYYQpBWJ3X5LuPhCr": {
+            id: "5kDKpdUdth7y3EWqnu99LCcuT9jLYYQpBWJ3X5LuPhCr",
             name: "Blockchain Enthusiasts",
             members: [
                 {
-                    id: "identity1",
+                    id: "9py27fWqXuccXpzudDUhZTg6ohzAAZEceCpVLz97b1a3",
                     address: "0x123456789abcdef",
                     name: "Alice",
                     profileImageUrl: "https://example.com/profile1.jpg",
@@ -91,8 +91,8 @@ function initializeDatabase() {
         },
     };
     exports.db.identities = {
-        identity1: {
-            id: "identity1",
+        "9py27fWqXuccXpzudDUhZTg6ohzAAZEceCpVLz97b1a3": {
+            id: "9py27fWqXuccXpzudDUhZTg6ohzAAZEceCpVLz97b1a3",
             address: "0x123456789abcdef",
             name: "Alice",
             profileImageUrl: "https://example.com/profile1.jpg",

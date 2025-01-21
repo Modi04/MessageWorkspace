@@ -32,7 +32,7 @@ export default function Auth() {
               <ClientLogin
                 getNodeUrl={getNodeUrl}
                 getApplicationId={getStorageApplicationId}
-                sucessRedirect={() => router.push('/community')}
+                sucessRedirect={() => router.push('/friends')}
               />
             </div>
             <div className="mt-6">

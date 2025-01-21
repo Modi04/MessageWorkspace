@@ -1,34 +1,37 @@
-import { Comment, Post } from '../types/types';
+import { Message, Chat } from '../types/types';
 import { ApiResponse } from './response';
 
-export interface FeedRequest {
-  // ignore
+export interface ViewChats {
+  user_id: string;
+  context_id: string;
 }
 
-export interface PostRequest {
-  id: number;
+export interface CreateChat {
+  id: string;
+  context: string;
+  name: string;
 }
 
-export interface CreatePostRequest {
+export interface ViewChatMessages {
+  chat_id: string;
+}
+
+export interface CreateChatMessages {
+  chat_id: string;
+  user_id: string;
   content: string;
 }
 
-export interface CreateCommentRequest {
-  post_id: number;
-  text: string;
-  user: string;
-}
-
 export enum ClientMethod {
-  CREATE_COMMENT = 'create_comment',
-  POST = 'post',
-  CREATE_POST = 'create_post',
-  POSTS = 'posts',
+  VIEW_USER_CHAT = 'view_user_chats',
+  CREATE_CHAT = 'create_user_chat',
+  VIEW_MESSAGES = 'view_chat_message',
+  CREATE_MESSAGES = 'create_chat_message',
 }
 
 export interface ClientApi {
-  fetchFeed(params: FeedRequest): ApiResponse<Post[]>;
-  fetchPost(params: PostRequest): ApiResponse<Post>;
-  createPost(params: CreatePostRequest): ApiResponse<Post>;
-  createComment(params: CreateCommentRequest): ApiResponse<Comment>;
+  fetchChats(params: ViewChats): ApiResponse<Chat[]>;
+  createChats(params: CreateChat): ApiResponse<any>;
+  fetchMessages(params: ViewChatMessages): ApiResponse<Message[]>;
+  createMessages(params: CreateChatMessages): ApiResponse<any>;
 }
