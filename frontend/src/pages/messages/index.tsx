@@ -6,6 +6,18 @@ const MessagePage = () => {
   const router = useRouter();
   const { identity, friendsIdentity, context } = router.query;
 
+
+  const [inputValue, setInputValue] = useState(''); 
+  const handleInputChange = (e) => { 
+  setInputValue(e.target.value); 
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      console.log(inputValue);
+    }
+  };
+
   return (
     <div>
       <div className="fixed flex w-full max-w-[600px] items-center justify-between p-4 bg-[#1C1C1D] text-white">
@@ -38,6 +50,16 @@ const MessagePage = () => {
           ))}
         </div>
       </div>
+
+      <input
+          type="text"
+          value={inputValue}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+          className="w-full mt-28 h-20 rounded-xl placeholder:pl-4 text-[#757575]"
+          placeholder="Enter Message"
+        />
+
     </div>
   );
 };
