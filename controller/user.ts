@@ -1,5 +1,5 @@
-import { db } from "../index";
-import { User, Context } from "../types";
+import { db } from "../../../server";
+import { Context, User } from "../types";
 
 // Get all users
 export const getAllUsers = () => {

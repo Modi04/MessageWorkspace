@@ -4,7 +4,7 @@ import { messagesExample } from '../../db/messages';
 import MessageBox from './MessageBox';
 const MessagePage = () => {
   const router = useRouter();
-  const { identity, friendsIdentity } = router.query;
+  const { identity, friendsIdentity, context } = router.query;
 
 
   const [inputValue, setInputValue] = useState(''); 
@@ -24,7 +24,10 @@ const MessagePage = () => {
         <button
           className="text-lg font-bold flex items-center justify-center w-10 h-10 bg-[#787878] rounded-full"
           onClick={() =>
-            router.push({ pathname: '/chats', query: { identity: identity } })
+            router.push({
+              pathname: '/chats',
+              query: { identity: identity, context: context },
+            })
           }
         >
           ←

@@ -1,9 +1,24 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import UserList from '../../components/UserList';
-import { useParams } from 'next/navigation';
 import { contextExample } from '../../db/context';
 import { identityExample } from '../../db/Identity';
+import { fetchContexts, fetchIdentities } from '../../api/icp/context';
+
+interface Identity {
+  id: string;
+  address: string;
+  profileImageUrl: string;
+  description: string;
+}
+
+interface FetchIdentitiesResponse {
+  identities: Identity[];
+}
+
+interface FetchContextsResponse {
+  contexts: { id: string; name: string }[];
+}
 
 export default function Index() {
   const router = useRouter();
@@ -11,15 +26,44 @@ export default function Index() {
   const [isContextSelected, setIsContextSelected] = useState(false);
   const [identity, setIdentity] = useState('');
   const [isIdentitySelected, setIsIdentitySelected] = useState(false);
+  const [userContexts, setUserContexts] =
+    useState<FetchContextsResponse | null>(null);
+  const [userContextIdentities, setUserContextIdentities] =
+    useState<FetchIdentitiesResponse | null>(null);
+
+  const exAddress = '0x123456789abcdef';
 
   useEffect(() => {
     if (isContextSelected && isIdentitySelected) {
       router.push({
-        pathname: '/friends', // 이동할 경로
-        query: { context: caliContext, identity: identity }, // 전달할 쿼리
+        pathname: '/friends',
+        query: { context: caliContext, identity: identity },
       });
     }
   }, [isContextSelected, isIdentitySelected]);
+
+  const getContexts = async (address: string) => {
+    const dbUserContexts: FetchContextsResponse = await fetchContexts(address);
+    setUserContexts(dbUserContexts);
+  };
+
+  const getIdentities = async (address: string, contextId: string) => {
+    const dbUserIdentities: FetchIdentitiesResponse = await fetchIdentities(
+      address,
+      contextId,
+    );
+    setUserContextIdentities(dbUserIdentities);
+  };
+
+  useEffect(() => {
+    getContexts(exAddress);
+  }, []);
+
+  useEffect(() => {
+    if (caliContext) {
+      getIdentities(exAddress, caliContext);
+    }
+  }, [caliContext]);
 
   return (
     <div className=" w-full h-screen flex flex-col items-center justify-center text-black">
@@ -27,14 +71,14 @@ export default function Index() {
         {isContextSelected ? (
           <UserList
             title="Select your profile"
-            contents={identityExample}
+            contents={userContextIdentities?.identities || identityExample}
             setIsSelected={setIsIdentitySelected}
             setValue={setIdentity}
           />
         ) : (
           <UserList
             title="Select your organization"
-            contents={contextExample}
+            contents={userContexts?.contexts || contextExample}
             setIsSelected={setIsContextSelected}
             setValue={setCaliContext}
           />

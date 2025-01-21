@@ -1,29 +1,23 @@
 export interface User {
-  address: string;
-  contexts: string[];
+  context: string[];
 }
 
 export interface Context {
-  id : string;
-  name : string;
-  members: string[];
-  chatRooms: string[];
-  messages: string[];
-}
-
-export interface Member {
-  identity: Identity;
-  access: string;
+  id: string;
+  name: string;
+  members: Identity[];
 }
 
 export interface Identity {
   id: string;
-  address : string;
+  address: string;
+  name: string;
   profileImageUrl: string;
   description: string;
 }
 
 export interface ChatRoom {
+  context: string;
   chatRoomId: string;
   name: string;
 }
@@ -37,9 +31,9 @@ export interface Message {
 }
 
 export interface Database {
-  contexts: { [id: string]: Context };
   users: { [id: string]: User };
+  contexts: { [id: string]: Context };
   chats: { [id: string]: ChatRoom };
   messages: { [id: string]: Message };
-  identities:  { [id: string] : Identity };
+  identities: { [id: string]: Identity };
 }

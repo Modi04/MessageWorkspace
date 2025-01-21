@@ -1,0 +1,50 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const context_1 = require("../controller/context");
+class MessageRoutes {
+    constructor() {
+        this.router = (0, express_1.Router)();
+        this.intializeRoutes();
+    }
+    intializeRoutes() {
+        this.router.get("/", context_1.welcome);
+    }
+}
+// View all users
+// router.get("/", (req, res) => {
+//   const users = getAllUsers();
+//   res.json(users);
+// });
+// // View a specific user by ID
+// router.get("/:userId", (req, res) => {
+//   const { userId } = req.params;
+//   const user = getUserById(userId);
+//   if (user) {
+//     res.json(user);
+//   } else {
+//     res.status(404).json({ error: "User not found" });
+//   }
+// });
+// router.get("/:userId/contexts", (req, res) => {
+//   const { userId } = req.params;
+//   const user = getUserById(userId);
+//   if (!user) {
+//     return res.status(404).json({ error: "User not found" });
+//   }
+//   const contexts = user.contexts
+//     .map((contextId) => viewContext(contextId))
+//     .filter((context) => context !== null);
+//   res.json(contexts);
+// });
+// // Create a new user
+// router.post("/", (req, res) => {
+//   const newUser = req.body;
+//   const createdUser = createUser(newUser);
+//   if (createdUser) {
+//     res.status(201).json(createdUser);
+//   } else {
+//     res.status(400).json({ error: "Failed to create user" });
+//   }
+// });
+exports.default = new MessageRoutes().router;

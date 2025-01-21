@@ -24,6 +24,8 @@
     "clean": "rm -rf .azle && rm -rf .dfx && rm -rf .turbo && rm -rf node_modules"
   },
   "dependencies": {
+    "@dfinity/candid": "^2.2.0",
+    "@dfinity/principal": "^2.2.0",
     "azle": "^0.21.1",
     "cors": "^2.8.5",
     "express": "^4.19.2",
