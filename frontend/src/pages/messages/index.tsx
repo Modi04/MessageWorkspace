@@ -2,19 +2,20 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { messagesExample } from '../../db/messages';
 import MessageBox from './MessageBox';
+import MesssageInput from './MessageInput';
 const MessagePage = () => {
   const router = useRouter();
   const { identity, friendsIdentity, context } = router.query;
 
-
-  const [inputValue, setInputValue] = useState(''); 
-  const handleInputChange = (e) => { 
-  setInputValue(e.target.value); 
+  const [inputValue, setInputValue] = useState('');
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
   };
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       console.log(inputValue);
+      setInputValue('');
     }
   };
 
@@ -51,15 +52,11 @@ const MessagePage = () => {
         </div>
       </div>
 
-      <input
-          type="text"
-          value={inputValue}
-          onChange={handleInputChange}
-          onKeyDown={handleKeyDown}
-          className="w-full mt-28 h-20 rounded-xl placeholder:pl-4 text-[#757575]"
-          placeholder="Enter Message"
-        />
-
+      <MesssageInput
+        inputval={inputValue}
+        handleInputChange={handleInputChange}
+        handleKeyDown={handleKeyDown}
+      />
     </div>
   );
 };
