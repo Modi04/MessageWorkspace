@@ -1,4 +1,4 @@
-import { db } from "../index";
+import { db } from "../../../server";
 import { Context, Identity } from "../types";
 
 // Create a new context and link it to a user
@@ -20,7 +20,6 @@ export const viewContext = (contextId: string) => {
   return db.contexts[contextId] || null;
 };
 
-
 // Get identities in a context matching user address and context members
 export const getFilteredContextIdentities = (contextId: string, userAddress: string) => {
   // Step 1: Retrieve the context by ID
@@ -35,9 +34,7 @@ export const getFilteredContextIdentities = (contextId: string, userAddress: str
   );
 
   // Step 3: Match identities with context members
-  const filteredIdentities = matchingIdentities.filter((identity) =>
-    context.members.includes(identity.id)
-  );
+  const filteredIdentities = matchingIdentities.filter((identity) => context.members.includes(identity.id));
 
   return filteredIdentities;
 };

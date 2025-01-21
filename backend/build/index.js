@@ -1,58 +1,33 @@
-// 기존 코드
-import express from "express";
-// 메모리 기반 데이터베이스
-let db = {
-    profiles: [],
-    posts: [],
-    requests: [],
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-const app = express();
-const PORT = 4000;
-app.use(express.json());
-// 기본 엔드포인트
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.db = void 0;
+// Importing required modules
+const express_1 = __importDefault(require("express"));
+const context_1 = __importDefault(require("./routes/context"));
+const message_1 = __importDefault(require("./routes/message"));
+const user_1 = __importDefault(require("./routes/user"));
+// In-memory database
+exports.db = {
+    users: {},
+    chats: {},
+    messages: {},
+    contexts: {},
+    identities: {},
+};
+const app = (0, express_1.default)();
+app.use(express_1.default.json());
+// Use routers
+app.use("/users", user_1.default);
+app.use("/contexts", context_1.default);
+app.use("/messages", message_1.default);
+// Default endpoint
 app.get("/", (_req, res) => {
-    res.send("Hello World!");
+    res.send({ message: "Welcome to the Chat App API!" });
 });
-// DB 읽기 함수들
-app.get("/profiles", (_req, res) => {
-    res.json(db.profiles);
-});
-app.get("/posts", (_req, res) => {
-    res.json(db.posts);
-});
-app.get("/requests", (_req, res) => {
-    res.json(db.requests);
-});
-// 특정 Post를 ID로 조회하는 API
-app.get("/posts/:id", (req, res) => {
-    const { id } = req.params;
-    const post = db.posts.find((p) => p.id === id);
-    if (post) {
-        res.json(post);
-    }
-    else {
-        res.status(404).json({ error: "Post not found" });
-    }
-});
-// DB 쓰기 함수들
-app.post("/profiles", (req, res) => {
-    const newProfile = req.body;
-    db.profiles.push(newProfile);
-    res.status(201).json(newProfile);
-});
-app.post("/posts", (req, res) => {
-    const newPost = req.body;
-    db.posts.push(newPost);
-    res.status(201).json(newPost);
-});
-app.post("/requests", (req, res) => {
-    const newRequest = req.body;
-    db.requests.push(newRequest);
-    res.status(201).json(newRequest);
-});
-// 정적 파일 서비스
-app.use(express.static("dist"));
-// 서버 시작
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+// Static file service
+app.use(express_1.default.static("dist"));
+// Start the server
+app.listen();

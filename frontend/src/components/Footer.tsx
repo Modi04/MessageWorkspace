@@ -5,11 +5,14 @@ import { useEffect, useState } from 'react';
 
 export default function Footer() {
   const router = useRouter();
-  const { identity } = router.query;
+  const { identity, context } = router.query;
 
   const handleNavigation = (path: string) => {
     if (router.pathname === path) return;
-    router.push({ pathname: path, query: { identity: identity } });
+    router.push({
+      pathname: path,
+      query: { identity: identity, context: context },
+    });
   };
 
   return (

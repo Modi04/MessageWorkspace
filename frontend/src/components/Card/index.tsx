@@ -16,7 +16,7 @@ const Card: React.FC<CardProps> = ({ message }) => {
   const router = useRouter();
 
   const truncatedDescription =
-    message.description.length > 30
+    message.description?.length > 30
       ? message.description.substring(0, 30) + '...'
       : message.description;
 
