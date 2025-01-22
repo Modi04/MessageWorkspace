@@ -14,11 +14,14 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ message }) => {
   const router = useRouter();
+  console.log(message);
 
-  const truncatedDescription =
-    message.description?.length > 30
-      ? message.description.substring(0, 30) + '...'
-      : message.description;
+  function formatDescription(description) {
+    if (!description) return ''; // description이 null 또는 undefined인 경우 빈 문자열 반환
+    return description.length > 30
+      ? description.substring(0, 30) + '...'
+      : description;
+  }
 
   return (
     <div className="w-full bg-black h-fit p-4">
@@ -30,11 +33,11 @@ const Card: React.FC<CardProps> = ({ message }) => {
         <div className="flex-1 text-ellipsis overflow-hidden whitespace-nowrap text-start overflow-hidden px-4">
           <div className="font-bold text-[#E6E0E9] ">{message.name}</div>
           <div className="text-slate-500 text-[14px]">
-            {truncatedDescription}
+            {formatDescription(message.description)}
           </div>
         </div>
 
-        <BsThreeDotsVertical className='mb-5 text-lg text-[#CAC4D0]'/>
+        <BsThreeDotsVertical className="mb-5 text-lg text-[#CAC4D0]" />
       </div>
     </div>
   );

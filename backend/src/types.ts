@@ -12,7 +12,7 @@ export interface Identity {
   id: string;
   address: string;
   name: string;
-  profileImageUrl: string;
+  profile: string;
   description: string;
 }
 

@@ -37,7 +37,6 @@ export default function Index() {
     if (isContextSelected && isIdentitySelected) {
       router.push({
         pathname: '/friends',
-        query: { context: caliContext, identity: identity },
       });
     }
   }, [isContextSelected, isIdentitySelected]);
@@ -71,14 +70,14 @@ export default function Index() {
         {isContextSelected ? (
           <UserList
             title="Select your profile"
-            contents={userContextIdentities?.identities || identityExample}
+            contents={identityExample}
             setIsSelected={setIsIdentitySelected}
             setValue={setIdentity}
           />
         ) : (
           <UserList
             title="Select your organization"
-            contents={userContexts?.contexts || contextExample}
+            contents={contextExample}
             setIsSelected={setIsContextSelected}
             setValue={setCaliContext}
           />
