@@ -1,13 +1,13 @@
 import {
   ClientApi,
   ClientMethod,
-  CreateCommentRequest,
-  CreatePostRequest,
-  FeedRequest,
-  PostRequest,
+  ViewChats,
+  CreateChat,
+  ViewChatMessages,
+  CreateChatMessages,
 } from '../clientApi';
 import { ApiResponse } from '../response';
-import { Comment, JsonWebToken, Post } from '../../types/types';
+import { Chat, JsonWebToken, Message } from '../../types/types';
 import {
   JsonRpcClient,
   RequestConfig,
@@ -47,16 +47,16 @@ function getConfigAndJwt() {
 }
 
 export class ClientApiDataSource implements ClientApi {
-  async fetchFeed(params: FeedRequest): ApiResponse<Post[]> {
+  async fetchChat(params: { chat_id: string }): ApiResponse<any> {
     const { jwtObject, config, error } = getConfigAndJwt();
     if (error) {
       return { error };
     }
 
-    const response = await getJsonRpcClient().query<FeedRequest, Post[]>(
+    const response = await getJsonRpcClient().query<any, Chat>(
       {
         contextId: jwtObject.context_id,
-        method: ClientMethod.POSTS,
+        method: ClientMethod.VIEW_CHAT,
         argsJson: params,
         executorPublicKey: jwtObject.executor_public_key,
       },
@@ -66,7 +66,7 @@ export class ClientApiDataSource implements ClientApi {
     if (rpcError && rpcError.code) {
       const response = await handleRpcError(rpcError, getNodeUrl);
       if (response.code === 403) {
-        return await this.fetchFeed(params);
+        return await this.fetchChat(params);
       }
       return {
         error: await handleRpcError(rpcError, getNodeUrl),
@@ -79,16 +79,54 @@ export class ClientApiDataSource implements ClientApi {
     };
   }
 
-  async fetchPost(params: PostRequest): ApiResponse<Post> {
+  async fetchChats(): ApiResponse<any> {
     const { jwtObject, config, error } = getConfigAndJwt();
     if (error) {
       return { error };
     }
 
-    const response = await getJsonRpcClient().query<PostRequest, Post>(
+    const response = await getJsonRpcClient().query<any, Chat[]>(
       {
         contextId: jwtObject.context_id,
-        method: ClientMethod.POST,
+        method: ClientMethod.VIEW_USER_CHAT,
+        argsJson: {
+          user_id: jwtObject.executor_public_key,
+          context_id: jwtObject.context_id,
+        },
+        executorPublicKey: jwtObject.executor_public_key,
+      },
+      config,
+    );
+    const rpcError: RpcError | null = response?.error ?? null;
+    if (rpcError && rpcError.code) {
+      const response = await handleRpcError(rpcError, getNodeUrl);
+      if (response.code === 403) {
+        return await this.fetchChats();
+      }
+      return {
+        error: await handleRpcError(rpcError, getNodeUrl),
+      };
+    }
+
+    return {
+      data: response.result?.output ?? [],
+      error: null,
+    };
+  }
+
+  async fetchMessages(params: ViewChatMessages): ApiResponse<Message[]> {
+    const { jwtObject, config, error } = getConfigAndJwt();
+    if (error) {
+      return { error };
+    }
+
+    const response = await getJsonRpcClient().query<
+      ViewChatMessages,
+      Message[]
+    >(
+      {
+        contextId: jwtObject.context_id,
+        method: ClientMethod.VIEW_MESSAGES,
         argsJson: params,
         executorPublicKey: jwtObject.executor_public_key,
       },
@@ -98,7 +136,7 @@ export class ClientApiDataSource implements ClientApi {
     if (rpcError && rpcError.code) {
       const response = await handleRpcError(rpcError, getNodeUrl);
       if (response.code === 403) {
-        return await this.fetchPost(params);
+        return await this.fetchMessages(params);
       }
       return {
         error: await handleRpcError(rpcError, getNodeUrl),
@@ -111,17 +149,17 @@ export class ClientApiDataSource implements ClientApi {
     };
   }
 
-  async createPost(params: CreatePostRequest): ApiResponse<Post> {
+  async createChats(params: { id: string; name: string }): ApiResponse<any> {
     const { jwtObject, config, error } = getConfigAndJwt();
     if (error) {
       return { error };
     }
 
-    const response = await getJsonRpcClient().mutate<CreatePostRequest, Post>(
+    const response = await getJsonRpcClient().mutate<CreateChat, Chat>(
       {
         contextId: jwtObject.context_id,
-        method: ClientMethod.CREATE_POST,
-        argsJson: params,
+        method: ClientMethod.CREATE_CHAT,
+        argsJson: { ...params, context: jwtObject.context_id },
         executorPublicKey: jwtObject.executor_public_key,
       },
       config,
@@ -130,7 +168,7 @@ export class ClientApiDataSource implements ClientApi {
     if (rpcError && rpcError.code) {
       const response = await handleRpcError(rpcError, getNodeUrl);
       if (response.code === 403) {
-        return await this.createPost(params);
+        return await this.createChats(params);
       }
       return {
         error: await handleRpcError(rpcError, getNodeUrl),
@@ -143,20 +181,23 @@ export class ClientApiDataSource implements ClientApi {
     };
   }
 
-  async createComment(params: CreateCommentRequest): ApiResponse<Comment> {
+  async createMessages(params: {
+    chat_id: string;
+    content: string;
+  }): ApiResponse<any> {
     const { jwtObject, config, error } = getConfigAndJwt();
     if (error) {
       return { error };
     }
 
     const response = await getJsonRpcClient().mutate<
-      CreateCommentRequest,
+      CreateChatMessages,
       Comment
     >(
       {
         contextId: jwtObject.context_id,
-        method: ClientMethod.CREATE_COMMENT,
-        argsJson: params,
+        method: ClientMethod.CREATE_MESSAGES,
+        argsJson: { ...params, user_id: jwtObject.executor_public_key },
         executorPublicKey: jwtObject.executor_public_key,
       },
       config,
@@ -165,7 +206,7 @@ export class ClientApiDataSource implements ClientApi {
     if (rpcError && rpcError.code) {
       const response = await handleRpcError(rpcError, getNodeUrl);
       if (response.code === 403) {
-        return await this.createComment(params);
+        return await this.createMessages(params);
       }
       return {
         error: await handleRpcError(rpcError, getNodeUrl),
@@ -173,7 +214,7 @@ export class ClientApiDataSource implements ClientApi {
     }
 
     return {
-      data: response?.result?.output,
+      data: response?.result,
       error: null,
     };
   }

@@ -19,20 +19,20 @@ export const db: Database = {
 export function initializeDatabase(): void {
   db.users = {
     "0x123456789abcdef": {
-      context: ["0x987654321abcdef", "0xabcdef987654321"],
+      context: ["7pKhBjjqHTf5w1GsgShrXipFpxhfCbVBpwmPyA747rr", "0xabcdef987654321"],
     },
-    "0xabcdef123456789": {
+    identity3: {
       context: ["0x987654321abcdef"],
     },
   };
 
   db.contexts = {
-    "0x987654321abcdef": {
-      id: "0x987654321abcdef",
+    Afg66vswxKBQvxmmXgrEA1Y9zxA2NuNWkxFEKpJAFLsL: {
+      id: "Afg66vswxKBQvxmmXgrEA1Y9zxA2NuNWkxFEKpJAFLsL",
       name: "Blockchain Enthusiasts",
       members: [
         {
-          id: "identity1",
+          id: "FK44Dtq1pjoJQ5gUNN7WutDAND1DPMwwJTtMob8QQtjz",
           address: "0x123456789abcdef",
           name: "Alice",
           profileImageUrl: "https://example.com/profile1.jpg",
@@ -93,17 +93,24 @@ export function initializeDatabase(): void {
   };
 
   db.identities = {
-    identity1: {
-      id: "identity1",
+    "9py27fWqXuccXpzudDUhZTg6ohzAAZEceCpVLz97b1a3": {
+      id: "9py27fWqXuccXpzudDUhZTg6ohzAAZEceCpVLz 97b1a3",
       address: "0x123456789abcdef",
       name: "Alice",
       profileImageUrl: "https://example.com/profile1.jpg",
       description: "Blockchain developer and enthusiast.",
     },
-    identity2: {
-      id: "identity2",
+    FK44Dtq1pjoJQ5gUNN7WutDAND1DPMwwJTtMob8QQtjz: {
+      id: "FK44Dtq1pjoJQ5gUNN7WutDAND1DPMwwJTtMob8QQtjz",
       address: "0x123456789abcdef",
       name: "Bob",
+      profileImageUrl: "https://example.com/profile2.jpg",
+      description: "AI researcher focused on NLP.",
+    },
+    identity3: {
+      id: "identity3",
+      address: "0x123456789abcdef",
+      name: "Carol",
       profileImageUrl: "https://example.com/profile2.jpg",
       description: "AI researcher focused on NLP.",
     },

@@ -8,6 +8,7 @@ export const CONTEXT_ID = 'context-id';
 export const APPLICATION_ID = 'application-id';
 export const ACCESS_TOKEN = 'access-token';
 export const REFRESH_TOKEN = 'refresh-token';
+export const IDENTITY = 'identity';
 
 export const clearAppEndpoint = () => {
   localStorage.removeItem(APP_URL);
@@ -38,18 +39,48 @@ export const getAppEndpointKey = (): string | null => {
   return null;
 };
 
+export const setIdentity = (url: string) => {
+  if (process.env['NEXT_PUBLIC_IDENTITY']) {
+    localStorage.setItem(
+      IDENTITY,
+      JSON.stringify(process.env['NEXT_PUBLIC_IDENTITY']),
+    );
+  } else {
+    localStorage.setItem(IDENTITY, JSON.stringify(url));
+  }
+};
+
+export const getIdentity = (): string | null => {
+  if (typeof window !== 'undefined' && window.localStorage) {
+    let url: string = JSON.parse(localStorage.getItem(IDENTITY));
+    if (url) {
+      return url;
+    }
+  }
+  return null;
+};
+
 export const getContextId = (): string | null => {
   if (typeof window !== 'undefined' && window.localStorage) {
-    const storageContextId = localStorage.getItem(CONTEXT_ID);
+    const storageContextId: string = JSON.parse(
+      localStorage.getItem(CONTEXT_ID),
+    );
     if (storageContextId) {
-      return JSON.parse(storageContextId);
+      return storageContextId;
     }
   }
   return null;
 };
 
 export const setContextId = (contextId: string) => {
-  localStorage.setItem(CONTEXT_ID, JSON.stringify(contextId));
+  if (process.env['NEXT_PUBLIC_CONTEXT_ID']) {
+    localStorage.setItem(
+      CONTEXT_ID,
+      JSON.stringify(process.env['NEXT_PUBLIC_CONTEXT_ID']),
+    );
+  } else {
+    localStorage.setItem(CONTEXT_ID, JSON.stringify(contextId));
+  }
 };
 
 export const getApplicationId = (): string | null => {
