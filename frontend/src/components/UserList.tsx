@@ -11,9 +11,9 @@ export default function UserList({ title, setIsSelected, setValue, contents }) {
 
   return (
     <div className="w-full h-full">
-      <div className="text-[18px] font-bold  p-3 text-white">{title}</div>
+      <div className="text-[23px] p-3 text-[#E6E0E9]">{title}</div>
       {contents.map((message, index) => (
-        <div className="w-full border-b border-slate-700">
+        <div className="w-full border-b border-slate-600">
           <button
             className="w-full "
             key={index}
