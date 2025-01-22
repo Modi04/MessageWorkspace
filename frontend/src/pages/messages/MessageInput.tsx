@@ -10,7 +10,7 @@ export default function MesssageInput({
         value={inputval}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
-        className="fixed bottom-[80px] w-full py-4 px-3 rounded-xl  text-[#757575]"
+        className="fixed bottom-[80px] w-[600px] py-8 px-3 rounded-xl  text-[#757575]"
         placeholder="Enter Message"
       />
     </div>

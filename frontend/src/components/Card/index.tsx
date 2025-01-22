@@ -34,7 +34,7 @@ const Card: React.FC<CardProps> = ({ message }) => {
           </div>
         </div>
 
-        <BsThreeDotsVertical />
+        <BsThreeDotsVertical className='mb-5 text-lg text-[#CAC4D0]'/>
       </div>
     </div>
   );

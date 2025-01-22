@@ -4,8 +4,8 @@ import { profileExample } from '../../db/userProfile';
 import { useEffect, useState } from 'react';
 import UserList from '../../components/UserList';
 import { HiPencil } from 'react-icons/hi';
-import { fetchMembers } from '../../api/icp/context';
 import AddFriendsPopup from './AddFriends';
+import Sidebar from '../../components/Sidebar';
 
 // 타입 정의 (예시)
 interface Member {
@@ -68,6 +68,7 @@ export default function Index() {
         setShowPopup={setShowPopup}
         handleButtonClick={undefined}
       />
+      <Sidebar />
     </div>
   );
 }

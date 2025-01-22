@@ -33,7 +33,10 @@ const MessagePage = () => {
         >
           ←
         </button>
-        <div className="text-xl font-bold">Friend</div>
+        <div className='flex flex-col items-center'>
+          <div className="text-xl font-bold">Name</div>
+          <div className='text-sm text-[#787878]'>last seen just now</div>
+        </div>
         <div className="text-lg font-mono flex items-center justify-center w-10 h-10 bg-[#14C0FF] rounded-full">
           U
         </div>
