@@ -34,20 +34,44 @@ export const CONTEXT_API = {
 
 export async function fetchHealth() {
   const endpoint = `${CONTEXT_API.HEALTH_CHECK()}`;
-  return await apiRequest(endpoint);
+  try {
+    return await apiRequest(endpoint);
+  } catch (error) {
+    console.error('Error in fetchHealth:', error);
+    return null; // 기본값 반환
+  }
 }
 
 export async function fetchContexts(address: string) {
   const endpoint = `${CONTEXT_API.GET_USER_CONTEXTS(address)}`;
-  return await apiRequest(endpoint);
+  try {
+    return await apiRequest(endpoint);
+  } catch (error) {
+    console.error(`Error in fetchContexts for address ${address}:`, error);
+    return []; // 빈 배열 반환
+  }
 }
 
 export async function fetchIdentities(address: string, context: string) {
-  return await apiRequest(
-    `${CONTEXT_API.GET_USER_CONTEXT_IDENTITIES(address, context)}`,
-  );
+  try {
+    return await apiRequest(
+      `${CONTEXT_API.GET_USER_CONTEXT_IDENTITIES(address, context)}`,
+    );
+  } catch (error) {
+    console.error(
+      `Error in fetchIdentities for address ${address} and context ${context}:`,
+      error,
+    );
+    return []; // 빈 배열 반환
+  }
 }
 
 export async function fetchMembers(contextId: string) {
-  return await apiRequest(`${CONTEXT_API.GET_CONTEXT_MEMBERS(contextId)}`);
+  const endpoint = `${CONTEXT_API.GET_CONTEXT_MEMBERS(contextId)}`;
+  try {
+    return await apiRequest(endpoint);
+  } catch (error) {
+    console.error(`Error in fetchMembers for contextId ${contextId}:`, error);
+    return []; // 빈 배열 반환
+  }
 }
