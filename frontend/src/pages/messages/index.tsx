@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { messagesExample } from '../../db/messages';
 import MessageBox from './MessageBox';
 import MesssageInput from './MessageInput';
+import { IoIosArrowBack } from "react-icons/io";
+
 const MessagePage = () => {
   const router = useRouter();
   const { identity, friendsIdentity, context } = router.query;
@@ -31,7 +33,7 @@ const MessagePage = () => {
             })
           }
         >
-          ←
+          <IoIosArrowBack size={32}/>
         </button>
         <div className='flex flex-col items-center'>
           <div className="text-xl font-bold">Name</div>
