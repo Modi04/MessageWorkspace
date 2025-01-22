@@ -80,7 +80,7 @@ export default function Index() {
       ) : (
         <UserList
           title="Chats"
-          contents={chats ? chats.chats : []}
+          contents={chats ? chats.chats : chatExample}
           setIsSelected={setIsSelected}
           setValue={setChatId}
         />

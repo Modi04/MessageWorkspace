@@ -4,6 +4,9 @@ import UserList from '../../components/UserList';
 import { fetchMembers } from '../../api/icp/context';
 import AddFriendsPopup from './AddFriends';
 import { getJWTObject } from '../../utils/storage';
+import { HiPencil } from 'react-icons/hi';
+import Sidebar from '../../components/Sidebar';
+import { profileExample } from '../../db/userProfile';
 
 // 타입 정의 (예시)
 interface Member {
@@ -24,7 +27,7 @@ export default function Index() {
   const [isSelected, setIsSelected] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [members, setMembers] = useState<FetchMembersResponse | null>(null); // 초기값을 명시적으로 설정
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const jowtObject = getJWTObject();
 
@@ -61,7 +64,7 @@ export default function Index() {
       ) : (
         <UserList
           title="Friends"
-          contents={members.members} // members가 null일 경우 profileExample 사용
+          contents={members?.members ?? profileExample} // null 병합 연산자로 안전하게 처리
           setIsSelected={setIsSelected}
           setValue={setFriendsIdentity}
         />
@@ -72,6 +75,7 @@ export default function Index() {
         setShowPopup={setShowPopup}
         handleButtonClick={undefined}
       />
+      <Sidebar />
     </div>
   );
 }

@@ -15,7 +15,7 @@ const MessagePage = () => {
   const [messages, setMessages] = useState<Message[]>([]); // 빈 배열로 초기화
   const [inputValue, setInputValue] = useState('');
   const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [chatLoading, setchatLoading] = useState(true);
 
   const jowtObject = getJWTObject();
@@ -100,7 +100,6 @@ const MessagePage = () => {
   };
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p style={{ color: 'red' }}>{error}</p>;
 
   return (
     <div>
@@ -122,16 +121,18 @@ const MessagePage = () => {
       </div>
       <div className="p-4 pt-[90px]">
         <div className="space-y-4">
-          {(messages.length && messages).map((message, idx) => (
-            <MessageBox
-              key={message.id}
-              isUser={message.user_id === jowtObject.executor_public_key}
-              profile={
-                message.user_id === jowtObject.executor_public_key ? 'F' : 'U'
-              }
-              contents={message.content}
-            />
-          ))}
+          {(messages.length > 0 ? messages : messagesExample).map(
+            (message, idx) => (
+              <MessageBox
+                key={message.id}
+                isUser={message.user_id === jowtObject.executor_public_key}
+                profile={
+                  message.user_id === jowtObject.executor_public_key ? 'F' : 'U'
+                }
+                contents={message.content}
+              />
+            ),
+          )}
         </div>
       </div>
       <MesssageInput
