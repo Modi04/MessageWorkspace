@@ -15,7 +15,6 @@ async function apiRequest(
     throw new Error(`Network response was not ok: ${response.statusText}`);
   }
   const responseJson = await response.json();
-  console.log('response', responseJson);
   return responseJson;
   // return await response.json();
 }

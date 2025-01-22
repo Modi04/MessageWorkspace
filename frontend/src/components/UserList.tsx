@@ -12,7 +12,7 @@ export default function UserList({ title, setIsSelected, setValue, contents }) {
   return (
     <div className="w-full h-full">
       <div className="text-[18px] font-bold  p-3 text-white">{title}</div>
-      {contents.map((message, index) => (
+      {contents?.map((message, index) => (
         <div className="w-full border-b border-slate-700">
           <button
             className="w-full "

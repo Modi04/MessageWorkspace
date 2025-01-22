@@ -21,19 +21,19 @@ exports.db = {
 function initializeDatabase() {
     exports.db.users = {
         "0x123456789abcdef": {
-            context: ["5kDKpdUdth7y3EWqnu99LCcuT9jLYYQpBWJ3X5LuPhCr", "0xabcdef987654321"],
+            context: ["7pKhBjjqHTf5w1GsgShrXipFpxhfCbVBpwmPyA747rr", "0xabcdef987654321"],
         },
-        "0xabcdef123456789": {
+        identity3: {
             context: ["0x987654321abcdef"],
         },
     };
     exports.db.contexts = {
-        "5kDKpdUdth7y3EWqnu99LCcuT9jLYYQpBWJ3X5LuPhCr": {
-            id: "5kDKpdUdth7y3EWqnu99LCcuT9jLYYQpBWJ3X5LuPhCr",
+        Afg66vswxKBQvxmmXgrEA1Y9zxA2NuNWkxFEKpJAFLsL: {
+            id: "Afg66vswxKBQvxmmXgrEA1Y9zxA2NuNWkxFEKpJAFLsL",
             name: "Blockchain Enthusiasts",
             members: [
                 {
-                    id: "9py27fWqXuccXpzudDUhZTg6ohzAAZEceCpVLz97b1a3",
+                    id: "FK44Dtq1pjoJQ5gUNN7WutDAND1DPMwwJTtMob8QQtjz",
                     address: "0x123456789abcdef",
                     name: "Alice",
                     profileImageUrl: "https://example.com/profile1.jpg",
@@ -92,16 +92,23 @@ function initializeDatabase() {
     };
     exports.db.identities = {
         "9py27fWqXuccXpzudDUhZTg6ohzAAZEceCpVLz97b1a3": {
-            id: "9py27fWqXuccXpzudDUhZTg6ohzAAZEceCpVLz97b1a3",
+            id: "9py27fWqXuccXpzudDUhZTg6ohzAAZEceCpVLz 97b1a3",
             address: "0x123456789abcdef",
             name: "Alice",
             profileImageUrl: "https://example.com/profile1.jpg",
             description: "Blockchain developer and enthusiast.",
         },
-        identity2: {
-            id: "identity2",
+        FK44Dtq1pjoJQ5gUNN7WutDAND1DPMwwJTtMob8QQtjz: {
+            id: "FK44Dtq1pjoJQ5gUNN7WutDAND1DPMwwJTtMob8QQtjz",
             address: "0x123456789abcdef",
             name: "Bob",
+            profileImageUrl: "https://example.com/profile2.jpg",
+            description: "AI researcher focused on NLP.",
+        },
+        identity3: {
+            id: "identity3",
+            address: "0x123456789abcdef",
+            name: "Carol",
             profileImageUrl: "https://example.com/profile2.jpg",
             description: "AI researcher focused on NLP.",
         },

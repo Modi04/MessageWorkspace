@@ -5,11 +5,11 @@ export interface Chat {
 }
 
 export interface Message {
-  id: string;
+  id: number;
   chatId: string;
-  userId: string;
+  user_id: string;
   content: string;
-  createdAt: string;
+  createdAt: number;
 }
 
 export interface JsonWebToken {

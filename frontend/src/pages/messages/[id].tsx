@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { messagesExample } from '../../db/messages';
 import MessageBox from './MessageBox';
 import MesssageInput from './MessageInput';
-import { getContextId, getIdentity } from '../../utils/storage';
+import { getJWTObject } from '../../utils/storage';
 import { ClientApiDataSource } from '../../api/dataSource/ClientApiDataSource';
 import { Message } from '../../types/types';
 
@@ -14,28 +14,37 @@ const MessagePage = () => {
   // 상태 타입 정의 및 초기값 설정
   const [messages, setMessages] = useState<Message[]>([]); // 빈 배열로 초기화
   const [inputValue, setInputValue] = useState('');
-  const [identity, setIdentity] = useState<string | null>(null);
-  const [context, setContext] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [chatLoading, setchatLoading] = useState(true);
 
-  // 비동기 정보 가져오기
-  const getInfo = async () => {
+  const jowtObject = getJWTObject();
+
+  const fetchChat = useCallback(async () => {
+    setchatLoading(true); // 로딩 상태 시작
     try {
-      const id = await getIdentity();
-      setIdentity(id);
-
-      const cont = await getContextId();
-      setContext(cont);
+      const response = await new ClientApiDataSource().fetchChat({
+        chat_id: id as string,
+      });
+      if (response.error) {
+        setError(response.error.message);
+      } else {
+        if (response.data && response.data.length > 0) {
+        } else {
+          // response.data가 없거나 빈 배열이면 createChats 호출
+          console.log('Creating new chat...');
+          await new ClientApiDataSource().createChats({
+            id: id as string, // 타입 강제 변환
+            name: (id as string).split('and')[1],
+          });
+        }
+      }
     } catch (error) {
-      console.error('Error fetching info:', error);
-      setError('Failed to fetch identity or context.');
+      setError(error.message);
+    } finally {
+      setchatLoading(false);
     }
-  };
-
-  useEffect(() => {
-    getInfo();
-  }, []);
+  }, [id]);
 
   const fetchMessages = useCallback(async (request: { chat_id: string }) => {
     setLoading(true);
@@ -44,18 +53,18 @@ const MessagePage = () => {
       if (response.error) {
         setError(response.error.message);
       } else {
-        setMessages(response.data || []); // 상태를 ViewChatMessages[]로 설정
+        setMessages(response?.data?.slice().reverse());
       }
     } catch (error) {
       setError(error.message);
     } finally {
-      setLoading(false);
+      setLoading(false); // 로딩 상태 종료
     }
   }, []);
 
   useEffect(() => {
     const signGetPostRequest = async () => {
-      if (id && identity && context) {
+      if (id) {
         const fetchRequest = {
           chat_id: id as string, // id를 string으로 캐스팅
         };
@@ -63,7 +72,8 @@ const MessagePage = () => {
       }
     };
     signGetPostRequest();
-  }, [id, identity, context, fetchMessages]);
+    fetchChat();
+  }, [id, fetchMessages]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -71,7 +81,20 @@ const MessagePage = () => {
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && inputValue.trim()) {
-      console.log(inputValue); // 입력값 출력
+      new ClientApiDataSource().createMessages({
+        chat_id: id as string,
+        content: inputValue,
+      });
+      setMessages([
+        ...messages,
+        {
+          id: messages.length,
+          chatId: id as string,
+          user_id: jowtObject.executor_public_key,
+          content: inputValue,
+          createdAt: messages.length,
+        },
+      ]);
       setInputValue('');
     }
   };
@@ -87,7 +110,6 @@ const MessagePage = () => {
           onClick={() =>
             router.push({
               pathname: '/chats',
-              query: { identity, context },
             })
           }
         >
@@ -100,16 +122,16 @@ const MessagePage = () => {
       </div>
       <div className="p-4 pt-[90px]">
         <div className="space-y-4">
-          {(messages.length ? messages : messagesExample).map(
-            (message, idx) => (
-              <MessageBox
-                key={message.id}
-                isUser={message.user_id === identity}
-                profile={message.user_id === identity ? 'F' : 'U'}
-                contents={message.content}
-              />
-            ),
-          )}
+          {(messages.length && messages).map((message, idx) => (
+            <MessageBox
+              key={message.id}
+              isUser={message.user_id === jowtObject.executor_public_key}
+              profile={
+                message.user_id === jowtObject.executor_public_key ? 'F' : 'U'
+              }
+              contents={message.content}
+            />
+          ))}
         </div>
       </div>
       <MesssageInput

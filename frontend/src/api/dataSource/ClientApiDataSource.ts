@@ -47,13 +47,45 @@ function getConfigAndJwt() {
 }
 
 export class ClientApiDataSource implements ClientApi {
-  async fetchChats(params: ViewChats): ApiResponse<any> {
+  async fetchChat(params: { chat_id: string }): ApiResponse<any> {
     const { jwtObject, config, error } = getConfigAndJwt();
     if (error) {
       return { error };
     }
 
-    const response = await getJsonRpcClient().query<ViewChats, Chat[]>(
+    const response = await getJsonRpcClient().query<any, Chat>(
+      {
+        contextId: jwtObject.context_id,
+        method: ClientMethod.VIEW_CHAT,
+        argsJson: params,
+        executorPublicKey: jwtObject.executor_public_key,
+      },
+      config,
+    );
+    const rpcError: RpcError | null = response?.error ?? null;
+    if (rpcError && rpcError.code) {
+      const response = await handleRpcError(rpcError, getNodeUrl);
+      if (response.code === 403) {
+        return await this.fetchChat(params);
+      }
+      return {
+        error: await handleRpcError(rpcError, getNodeUrl),
+      };
+    }
+
+    return {
+      data: response.result?.output ?? [],
+      error: null,
+    };
+  }
+
+  async fetchChats(): ApiResponse<any> {
+    const { jwtObject, config, error } = getConfigAndJwt();
+    if (error) {
+      return { error };
+    }
+
+    const response = await getJsonRpcClient().query<any, Chat[]>(
       {
         contextId: jwtObject.context_id,
         method: ClientMethod.VIEW_USER_CHAT,
@@ -69,7 +101,7 @@ export class ClientApiDataSource implements ClientApi {
     if (rpcError && rpcError.code) {
       const response = await handleRpcError(rpcError, getNodeUrl);
       if (response.code === 403) {
-        return await this.fetchChats(params);
+        return await this.fetchChats();
       }
       return {
         error: await handleRpcError(rpcError, getNodeUrl),
@@ -117,7 +149,7 @@ export class ClientApiDataSource implements ClientApi {
     };
   }
 
-  async createChats(params: CreateChat): ApiResponse<any> {
+  async createChats(params: { id: string; name: string }): ApiResponse<any> {
     const { jwtObject, config, error } = getConfigAndJwt();
     if (error) {
       return { error };
@@ -127,7 +159,7 @@ export class ClientApiDataSource implements ClientApi {
       {
         contextId: jwtObject.context_id,
         method: ClientMethod.CREATE_CHAT,
-        argsJson: params,
+        argsJson: { ...params, context: jwtObject.context_id },
         executorPublicKey: jwtObject.executor_public_key,
       },
       config,
@@ -149,7 +181,10 @@ export class ClientApiDataSource implements ClientApi {
     };
   }
 
-  async createMessages(params: CreateChatMessages): ApiResponse<any> {
+  async createMessages(params: {
+    chat_id: string;
+    content: string;
+  }): ApiResponse<any> {
     const { jwtObject, config, error } = getConfigAndJwt();
     if (error) {
       return { error };
@@ -162,7 +197,7 @@ export class ClientApiDataSource implements ClientApi {
       {
         contextId: jwtObject.context_id,
         method: ClientMethod.CREATE_MESSAGES,
-        argsJson: params,
+        argsJson: { ...params, user_id: jwtObject.executor_public_key },
         executorPublicKey: jwtObject.executor_public_key,
       },
       config,

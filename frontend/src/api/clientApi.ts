@@ -24,12 +24,14 @@ export interface CreateChatMessages {
 
 export enum ClientMethod {
   VIEW_USER_CHAT = 'view_user_chats',
+  VIEW_CHAT = 'view_chat',
   CREATE_CHAT = 'create_user_chat',
   VIEW_MESSAGES = 'view_chat_message',
   CREATE_MESSAGES = 'create_chat_message',
 }
 
 export interface ClientApi {
+  fetchChat(params: { chat_id: string }): ApiResponse<Chat>;
   fetchChats(params: ViewChats): ApiResponse<Chat[]>;
   createChats(params: CreateChat): ApiResponse<any>;
   fetchMessages(params: ViewChatMessages): ApiResponse<Message[]>;
