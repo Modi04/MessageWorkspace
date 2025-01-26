@@ -30,26 +30,27 @@ export default function Index() {
     setLoading(true);
     try {
       const response = await new ClientApiDataSource().fetchChats();
+      console.log(response.data);
       if (response.error) {
         setError(response.error.message);
       } else {
-        const updatedData = await Promise.all(
-          response.data.map(async (chat: { id: string; name: string }) => {
-            const userResponse = await fetchUser(chat.name);
-            if (userResponse.error) {
-              console.error(
-                `Error fetching user profile for chat ID ${chat.id}:`,
-                userResponse.error.message,
-              );
-              return chat;
-            }
-            return {
-              ...chat,
-              name: userResponse.name || chat.name,
-            };
-          }),
-        );
-        setChats({ chats: updatedData });
+        // const updatedData = await Promise.all(
+        //   response.data.map(async (chat: { id: string; name: string }) => {
+        //     const userResponse = await fetchUser(chat.name);
+        //     if (userResponse.error) {
+        //       console.error(
+        //         `Error fetching user profile for chat ID ${chat.id}:`,
+        //         userResponse.error.message,
+        //       );
+        //       return chat;
+        //     }
+        //     return {
+        //       ...chat,
+        //       name: userResponse.name || chat.name,
+        //     };
+        //   }),
+        // );
+        setChats({ chats: response.data });
       }
     } catch (error) {
       console.log(error);
@@ -64,7 +65,7 @@ export default function Index() {
       await fetchChats();
     };
     signGetPostRequest();
-  }, [fetchChats]); // 필요한 종속성 추가
+  }, []); // 필요한 종속성 추가
 
   useEffect(() => {
     if (isSelected) {

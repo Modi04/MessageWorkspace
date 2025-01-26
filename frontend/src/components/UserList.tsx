@@ -1,9 +1,12 @@
 import { useRouter } from 'next/router';
 import Card from './Card';
-import { HiMiniBars3 } from "react-icons/hi2";
+import { HiMiniBars3 } from 'react-icons/hi2';
+import Sidebar from './Sidebar';
+import { useState } from 'react';
 
 export default function UserList({ title, setIsSelected, setValue, contents }) {
   const router = useRouter();
+  const [showSidebar, setShowSidebar] = useState(false);
 
   const onCardClick = (value: string) => {
     setValue(value);
@@ -12,10 +15,10 @@ export default function UserList({ title, setIsSelected, setValue, contents }) {
 
   return (
     <div className="w-full h-full">
-      <div className='flex items-center'>
+      <div className="flex items-center">
         <div className="text-[23px] p-3 text-[#E6E0E9]">{title}</div>
-        <button className='ml-auto mr-4'>
-          <HiMiniBars3 size={24}/>
+        <button className="ml-auto mr-4" onClick={() => setShowSidebar(true)}>
+          <HiMiniBars3 size={24} />
         </button>
       </div>
       {contents.map((message, index) => (
@@ -29,6 +32,7 @@ export default function UserList({ title, setIsSelected, setValue, contents }) {
           </button>
         </div>
       ))}
+      {showSidebar ? <Sidebar setShow={setShowSidebar} /> : <div />}
     </div>
   );
 }

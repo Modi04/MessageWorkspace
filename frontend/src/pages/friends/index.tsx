@@ -63,8 +63,8 @@ export default function Index() {
         <p>Loading...</p>
       ) : (
         <UserList
-          title="Friends"
-          contents={members?.members ?? profileExample} // null 병합 연산자로 안전하게 처리
+          title="Members"
+          contents={members?.members ?? [profileExample]} // null 병합 연산자로 안전하게 처리
           setIsSelected={setIsSelected}
           setValue={setFriendsIdentity}
         />
@@ -75,8 +75,6 @@ export default function Index() {
         setShowPopup={setShowPopup}
         handleButtonClick={undefined}
       />
-
-      <Sidebar />
     </div>
   );
 }
