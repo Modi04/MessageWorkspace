@@ -125,9 +125,11 @@ const MessagePage = () => {
             (message, idx) => (
               <MessageBox
                 key={message.id}
-                isUser={message.user_id === jowtObject.executor_public_key}
+                isUser={message.user_id === jowtObject?.executor_public_key}
                 profile={
-                  message.user_id === jowtObject.executor_public_key ? 'F' : 'U'
+                  message.user_id === jowtObject?.executor_public_key
+                    ? 'F'
+                    : 'U'
                 }
                 contents={message.content}
               />

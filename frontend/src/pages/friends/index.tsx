@@ -34,7 +34,7 @@ export default function Index() {
   useEffect(() => {
     if (isSelected) {
       router.push({
-        pathname: `/messages/${jowtObject.executor_public_key}and${friendsIdentity}`,
+        pathname: `/messages/${jowtObject?.executor_public_key}and${friendsIdentity}`,
       });
     }
   }, [isSelected]);
@@ -52,10 +52,10 @@ export default function Index() {
   };
 
   useEffect(() => {
-    if (typeof jowtObject.context_id === 'string') {
+    if (typeof jowtObject?.context_id === 'string') {
       getMembers(jowtObject.context_id);
     }
-  }, [jowtObject.context_id]);
+  }, [jowtObject?.context_id]);
 
   return (
     <div className="bg-black">
