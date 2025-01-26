@@ -34,7 +34,7 @@ export default function Index() {
     <div className="text-white">
       <div className='grid grid-cols-3 grid-rows-1 gap-2 bg-[#1C1C1E] text-[17px]'>
         <div className='flex'>
-          <IoIosArrowBack size={40}/>
+          <IoIosArrowBack size={32} className='mt-1'/>
           <p className='flex items-center'>Back</p>
         </div>
         <div className='flex items-center justify-center'>Edit Profile</div>
@@ -86,7 +86,7 @@ export default function Index() {
       </div>
 
 
-      <button className='bg-[#1C1C1D] h-[51px] text-[17px] flex items-center justify-center mb-11 w-full'
+      <button className='bg-[#1C1C1D] h-[51px] text-[17px] flex items-center justify-center mb-6 w-full'
       onClick={handleButtonClick}>Edit Profile</button>
 
 
