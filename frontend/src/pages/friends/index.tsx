@@ -75,6 +75,7 @@ export default function Index() {
         setShowPopup={setShowPopup}
         handleButtonClick={undefined}
       />
+
       <Sidebar />
     </div>
   );

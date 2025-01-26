@@ -2,13 +2,12 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { messagesExample } from '../../db/messages';
 import MessageBox from './MessageBox';
-import MesssageInput from './MessageInput';
 import { IoIosArrowBack } from "react-icons/io";
+import MesssageInput from './MessageInput';
 
 const MessagePage = () => {
   const router = useRouter();
   const { identity, friendsIdentity, context } = router.query;
-
   const [inputValue, setInputValue] = useState('');
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -62,6 +61,7 @@ const MessagePage = () => {
         handleInputChange={handleInputChange}
         handleKeyDown={handleKeyDown}
       />
+
     </div>
   );
 };

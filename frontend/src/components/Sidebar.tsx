@@ -21,13 +21,16 @@ const Sidebar = () => {
   return (
     <>
 
-    <div className="bg-[#3D3D3F] w-[55%] h-[600px] rounded-3xl ml-auto">
+    <div className="absolute top-0 right-0 bg-[#3D3D3F] w-[65%] h-[100%] rounded-3xl">
       <div className="text-[#E6E0E9] text-[23px] ml-4 mb-4 pt-6">Friend Request</div>
       <div className="grid grid-cols-[10%,70%,20%] grid-rows-1 flex items-center rounded-lg ml-[5%] w-[90%] h-10 bg-[#333333] mb-6">
         <HiMagnifyingGlass size={20} className="ml-3"/>
         <div className="text-[#9E9E9E] ml-4">Search</div>
         <HiMiniBars4 size={20} className="text-[#9E9E9E] ml-8"/>
       </div>
+      <RequestCard />
+      <RequestCard />
+      <RequestCard />
       <RequestCard />
       <RequestCard />
       <RequestCard />
