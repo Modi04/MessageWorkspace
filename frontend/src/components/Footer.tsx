@@ -14,7 +14,7 @@ export default function Footer() {
   };
 
   return (
-    <div className="w-full text-sm max-w-[600px] fixed bottom-0 h-20 bg-[#211F26] flex justify-around items-center">
+    <div className="z-50 w-full text-sm max-w-[600px] fixed bottom-0 h-20 bg-[#211F26] flex justify-around items-center">
       <div
         className="flex flex-col items-center cursor-pointer"
         onClick={() => handleNavigation('/friends')}

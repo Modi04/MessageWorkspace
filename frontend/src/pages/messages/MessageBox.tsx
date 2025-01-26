@@ -1,7 +1,9 @@
 const MessageBox = ({ isUser, profile, contents }) => {
+
+
   return (
     <div
-      className={`w-full flex ${isUser ? 'justify-end' : 'justify-start'} mb-4`}
+      className={`relative w-full flex ${isUser ? 'justify-end' : 'justify-start'} mb-4`}
     >
       {!isUser && (
         <div className="mb-2 text-[#E6E0E9] rounded-full bg-[#4F378B] flex items-center justify-center font-mono w-12 h-12 m-2">
@@ -15,6 +17,7 @@ const MessageBox = ({ isUser, profile, contents }) => {
       >
         <div className="text-center">{contents}</div>
       </div>
+
     </div>
   );
 };
