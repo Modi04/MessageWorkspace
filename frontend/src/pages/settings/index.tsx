@@ -32,7 +32,7 @@ export default function Index() {
 
   return (
     <div className="text-white">
-      <div className='grid grid-cols-3 grid-rows-1 gap-2 bg-[#1C1C1E] text-[17px]'>
+      <div className='p-2 grid grid-cols-3 grid-rows-1 gap-2 bg-[#1C1C1E] text-[17px]'>
         <div className='flex'>
           <IoIosArrowBack size={32} className='mt-1'/>
           <p className='flex items-center'>Back</p>
@@ -42,7 +42,7 @@ export default function Index() {
       </div>
 
 
-      <div className='mb-8'>
+      <div className='mb-6'>
         <div className='grid grid-cols-[20%,80%] grid-rows-2 flex items-center bg-[#1C1C1D] h-[105.48px] text-[17px]'>
           <div className='row-span-2 ml-5 flex justify-center items-center w-[75px] h-[75px] bg-black rounded-full text-white'>
             <IoIosCamera className="w-10 h-10"/>
@@ -57,7 +57,7 @@ export default function Index() {
       </div>
 
 
-      <div className='mb-8'>
+      <div className='mb-7'>
         <div className='bg-[#1C1C1D] h-[50.29px] flex items-center'>
         <input type='text' value={descript} onChange={handleDescriptChange} placeholder="Enter Description" className='ml-4 bg-[#1C1C1D] placeholder-[#545458A6] focus:outline-none' />
         </div>
