@@ -14,7 +14,6 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ message }) => {
   const router = useRouter();
-  console.log(message);
 
   function formatDescription(description) {
     if (!description) return ''; // description이 null 또는 undefined인 경우 빈 문자열 반환

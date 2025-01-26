@@ -28,6 +28,7 @@ export const CONTEXT_API = {
     `${API_BASE_URL}/contexts/members?contextId=${contextId}`,
   GET_USER_CONTEXT_IDENTITIES: (address: string, context: string) =>
     `${API_BASE_URL}/contexts/identities?userAddress=${address}&contextId=${context}`,
+  CREATE_USER_CONTEXT_IDENTITIES: () => `${API_BASE_URL}/contexts/identity`,
 };
 
 // API 요청 함수들
@@ -72,6 +73,16 @@ export async function fetchMembers(contextId: string) {
     return await apiRequest(endpoint);
   } catch (error) {
     console.error(`Error in fetchMembers for contextId ${contextId}:`, error);
+    return []; // 빈 배열 반환
+  }
+}
+
+export async function createIdentity() {
+  const endpoint = `${CONTEXT_API.CREATE_USER_CONTEXT_IDENTITIES()}`;
+  try {
+    return await apiRequest(endpoint);
+  } catch (error) {
+    console.error(`Error in fetchMembers for contextId:`, error);
     return []; // 빈 배열 반환
   }
 }

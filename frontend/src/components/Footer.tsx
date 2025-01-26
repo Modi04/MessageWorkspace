@@ -24,7 +24,7 @@ export default function Footer() {
         >
           <MdOutlinePersonOutline size="24" />
         </div>
-        <p>Friends</p>
+        <p>Members</p>
       </div>
       <div
         className="flex flex-col items-center cursor-pointer"

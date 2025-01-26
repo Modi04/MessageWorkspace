@@ -40,7 +40,12 @@ export default function AddFriendsPopup({
               >
                 No
               </button>
-              <button className="mt-4 px-4 py-2 text-[#65558F]">Yes</button>
+              <button
+                className="mt-4 px-4 py-2 text-[#65558F]"
+                onClick={() => setShowPopup(false)}
+              >
+                Yes
+              </button>
             </div>
           </div>
         </div>
