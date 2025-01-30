@@ -3,7 +3,8 @@ export const identityExample = [
     profile: 'A',
     name: 'Identity A',
     id: 'G87yNMcTzQoP5LhXu3JvKwRs9TzxWVcPaMnK48HyXZAB',
-    description: 'Description for Identity A',
+    description:
+      'Description for Identity Description for Identity ADescription for Identity ADescription for Identity ADescription for Identity A ',
   },
   {
     profile: 'B',
@@ -22,29 +23,5 @@ export const identityExample = [
     name: 'Identity D',
     id: 'T9ZNRJ8yMc5KLW3XPqXVT64BZYMJPoWA7vNM48KXYZBC',
     description: 'Description for Identity D',
-  },
-  {
-    profile: 'E',
-    name: 'Identity E',
-    id: 'M5XL8NRJ9yTZJoW3XPoVqKM64ZYBCA7vXT64XNYKMJQB',
-    description: 'Description for Identity E',
-  },
-  {
-    profile: 'F',
-    name: 'Identity F',
-    id: 'X7vNM48YZKMJQBCA9yXLqNRJ5PoW3ZT64XVT64BMNKWA',
-    description: 'Description for Identity F',
-  },
-  {
-    profile: 'G',
-    name: 'Identity G',
-    id: 'N64XT64BM9yXLJPoWA7vKMZRNM48YZKXYZABC5VT9MoN',
-    description: 'Description for Identity G',
-  },
-  {
-    profile: 'H',
-    name: 'Identity H',
-    id: 'X9yXL5KLZNRJPoW3XZKM64VqXT48BMN7vYZKXYZABCWN',
-    description: 'Description for Identity H',
   },
 ];

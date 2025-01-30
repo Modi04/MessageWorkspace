@@ -12,6 +12,7 @@ class ContextRoutes {
         this.router.get("/user", context_1.viewUserContexts);
         this.router.get("/identities", context_1.viewUserIdentities);
         this.router.get("/members", context_1.viewContextMembers);
+        this.router.get("/identity", context_1.addIdentityToContext);
     }
 }
 // Create a new context

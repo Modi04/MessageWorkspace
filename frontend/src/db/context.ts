@@ -29,22 +29,4 @@ export const contextExample = [
     id: 'E5ufRkSsYuBGkhjU6dXWxuyebsaGukxpzmli5yeVWpDi',
     description: 'Description for Context E',
   },
-  {
-    profile: 'F',
-    name: 'Context F',
-    id: 'F6vgSkTtVuBGphjU6eXWxyzfbsawukxpznlj6zfWWpEi',
-    description: 'Description for Context F',
-  },
-  {
-    profile: 'G',
-    name: 'Context G',
-    id: 'G7whTkUtWuBGuhjU6fXWxaygbsaXukwpznmk7zgXXpFi',
-    description: 'Description for Context G',
-  },
-  {
-    profile: 'H',
-    name: 'Context H',
-    id: 'H8xiUlVtWuBGvkjU6gXWxbzhbsayukxpznml8zhYYpGi',
-    description: 'Description for Context H',
-  },
 ];

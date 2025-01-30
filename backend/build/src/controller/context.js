@@ -4,6 +4,8 @@ exports.welcome = welcome;
 exports.viewUserContexts = viewUserContexts;
 exports.viewUserIdentities = viewUserIdentities;
 exports.viewContextMembers = viewContextMembers;
+exports.addIdentity = addIdentity;
+exports.addIdentityToContext = addIdentityToContext;
 const server_1 = require("../../server");
 function welcome(req, res) {
     return res.json({ message: "Welcome to bezkoder application." });
@@ -65,6 +67,30 @@ function viewContextMembers(req, res) {
         return res.status(404).json({ error: "Context not found" });
     }
     return res.json({ members: context.members });
+}
+function addIdentity(req, res) {
+    const contextId = req.query.contextId;
+    // Check if userId is provided
+    if (!contextId) {
+        return res.status(400).json({ error: "Missing contextId in query parameters" });
+    }
+    // Check if user exists
+    const context = server_1.db.contexts[contextId];
+    if (!context) {
+        return res.status(404).json({ error: "Context not found" });
+    }
+    return res.json({ members: context.members });
+}
+function addIdentityToContext() {
+    const identity = {
+        id: "newIdentity1",
+        address: "0xabcdefabcdefabcdef",
+        name: "John, Smart Contract Developer",
+        profile: "J",
+        description: "Specializes in developing secure smart contracts.",
+    };
+    // 컨텍스트의 멤버 목록에 새로운 Identity 추가
+    server_1.db.contexts["Afg66vswxKBQvxmmXgrEA1Y9zxA2NuNWkxFEKpJAFLsL"].members.push(identity);
 }
 // Create a new context and link it to a user
 // export const createContextForUser = (userId: string, context: Context) => {

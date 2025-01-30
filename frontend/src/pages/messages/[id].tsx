@@ -6,6 +6,7 @@ import MesssageInput from './MessageInput';
 import { getJWTObject } from '../../utils/storage';
 import { ClientApiDataSource } from '../../api/dataSource/ClientApiDataSource';
 import { Message } from '../../types/types';
+import { IoIosArrowBack } from 'react-icons/io';
 
 const MessagePage = () => {
   const router = useRouter();
@@ -105,14 +106,14 @@ const MessagePage = () => {
     <div>
       <div className="fixed flex w-full max-w-[600px] items-center justify-between p-4 bg-[#1C1C1D] text-white">
         <button
-          className="text-lg font-bold flex items-center justify-center w-10 h-10 bg-[#787878] rounded-full"
+          className="text-lg font-bold flex items-center justify-center w-10 h-10"
           onClick={() =>
             router.push({
               pathname: '/chats',
             })
           }
         >
-          ←
+          <IoIosArrowBack size="32" />
         </button>
         <div className="text-xl font-bold">Friend</div>
         <div className="text-lg font-mono flex items-center justify-center w-10 h-10 bg-[#14C0FF] rounded-full">

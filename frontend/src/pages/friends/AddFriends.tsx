@@ -14,23 +14,23 @@ export default function AddFriendsPopup({
     <div className="flex justify-center items-center">
       <button
         onClick={() => setShowPopup(true)}
-        className="flex items-center fixed bottom-[15vh] left-[59vw] bg-[#E8DEF9] text-[#65558F] w-40 h-16 rounded-[15px]"
+        className="flex items-center justify-center fixed bottom-[15vh] left-[60vw] bg-[#E8DEF9] text-[#65558F] w-40 h-16 rounded-[15px]"
       >
-        <HiPencil className="text-2xl mr-3 ml-3" />
-        <p className="text-medium mr-3">Add friends</p>
+        <HiPencil className="text-2xl mr-2" />
+        <p className="text-medium">Add friends</p>
       </button>
 
       {showPopup && (
         <div className="fixed inset-0 bg-black bg-opacity-20 flex justify-center items-center">
-          <div className="bg-[#ECE6F0] rounded-3xl flex flex-col w-72">
-            <h2 className="text-black text-lg mb-1 mt-4 ml-5">
+          <div className="bg-[#ECE6F0] rounded-[15px] flex flex-col w-72">
+            <h2 className="text-black text-lg mt-6 ml-5">
               Add Friend - Are you sure?
             </h2>
             <input
               type="text"
               value={inputval}
               onChange={handleInputChange}
-              className="px-9 py-1 ml-3 w-64 h-7 rounded-xl placeholder:text-sm pl-4 text-[#757575]"
+              className="px-9 py-1 ml-3 w-64 my-3 h-7 rounded-xl placeholder:text-sm pl-4 text-[#757575]"
               placeholder="Enter Username"
             />
             <div className="mb-1 flex ml-[167px] mt-[-10px] text-sm">

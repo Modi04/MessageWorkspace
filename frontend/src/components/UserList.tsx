@@ -4,7 +4,13 @@ import { HiMiniBars3 } from 'react-icons/hi2';
 import Sidebar from './Sidebar';
 import { useState } from 'react';
 
-export default function UserList({ title, setIsSelected, setValue, contents }) {
+export default function UserList({
+  title,
+  setIsSelected,
+  setValue,
+  contents,
+  setShowAddFriend = undefined,
+}) {
   const router = useRouter();
   const [showSidebar, setShowSidebar] = useState(false);
 
@@ -15,14 +21,20 @@ export default function UserList({ title, setIsSelected, setValue, contents }) {
 
   return (
     <div className="w-full h-full">
-      <div className="flex items-center">
-        <div className="text-[23px] p-3 text-[#E6E0E9]">{title}</div>
-        <button className="ml-auto mr-4" onClick={() => setShowSidebar(true)}>
+      <div className="flex items-center pt-8 ">
+        <div className="text-[23px] px-4 text-[#E6E0E9]">{title}</div>
+        <button
+          className="ml-auto mr-4 my-auto"
+          onClick={() => {
+            setShowSidebar(true);
+            setShowAddFriend(false);
+          }}
+        >
           <HiMiniBars3 size={24} />
         </button>
       </div>
       {contents.map((message, index) => (
-        <div className="w-full border-b border-slate-600">
+        <div className="w-full border-b border-slate-800 py-2">
           <button
             className="w-full"
             key={index}
@@ -32,7 +44,11 @@ export default function UserList({ title, setIsSelected, setValue, contents }) {
           </button>
         </div>
       ))}
-      {showSidebar ? <Sidebar setShow={setShowSidebar} /> : <div />}
+      {showSidebar ? (
+        <Sidebar setShow={setShowSidebar} setShowAddFriend={setShowAddFriend} />
+      ) : (
+        <div />
+      )}
     </div>
   );
 }

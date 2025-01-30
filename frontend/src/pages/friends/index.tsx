@@ -26,6 +26,8 @@ export default function Index() {
   const [friendsIdentity, setFriendsIdentity] = useState('');
   const [isSelected, setIsSelected] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [showAddFriend, setShowAddFriend] = useState(true);
+
   const [members, setMembers] = useState<FetchMembersResponse | null>(null); // 초기값을 명시적으로 설정
   const [loading, setLoading] = useState(false);
 
@@ -67,14 +69,18 @@ export default function Index() {
           contents={members?.members ?? [profileExample]} // null 병합 연산자로 안전하게 처리
           setIsSelected={setIsSelected}
           setValue={setFriendsIdentity}
+          setShowAddFriend={setShowAddFriend}
         />
       )}
-
-      <AddFriendsPopup
-        showPopup={showPopup}
-        setShowPopup={setShowPopup}
-        handleButtonClick={undefined}
-      />
+      {showAddFriend ? (
+        <AddFriendsPopup
+          showPopup={showPopup}
+          setShowPopup={setShowPopup}
+          handleButtonClick={undefined}
+        />
+      ) : (
+        <div />
+      )}
     </div>
   );
 }
