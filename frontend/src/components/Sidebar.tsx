@@ -8,17 +8,17 @@ import { createIdentity } from '../api/icp/context';
 const handleButtonClick = () => {
   createIdentity();
 };
-const RequestCard = () => {
+const RequestCard = ({ profile, title, description }) => {
   return (
     <div className="flex w-full h-[100px] border-b border-[#4A4A4B] justify-between items-center mb-2 px-6">
       <div className="flex">
-        <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#D3C1FF] font-bold text-black">
-          A
+        <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#3A7940] text-white">
+          {profile}
         </div>
 
         <div className="flex flex-col items-start text-start ml-4">
-          <div className="font-medium">Name</div>
-          <div className="text-sm text-gray-400">Purpose of request</div>
+          <div className="font-medium">{title}</div>
+          <div className="text-sm text-gray-400">{description}</div>
         </div>
       </div>
 
@@ -28,7 +28,7 @@ const RequestCard = () => {
           cursor="pointer"
           onClick={handleButtonClick}
           size={36}
-          className="text-lime-400 cursor-pointer"
+          className="text-[#CDFF7B] cursor-pointer"
         />
       </div>
     </div>
@@ -40,7 +40,7 @@ const Sidebar = ({ setShow, setShowAddFriend }) => {
     <>
       <div className="absolute top-0 right-0 bg-[#3D3D3F] w-[70%] h-[100%]">
         <div className="w-full flex justify-between items-center px-6 my-4">
-          <div className="text-[#E6E0E9] text-[23px]">Friend Request</div>
+          <div className="text-[#E6E0E9] text-[23px]">Requests</div>
           <button
             onClick={() => {
               setShow(false);
@@ -54,12 +54,17 @@ const Sidebar = ({ setShow, setShowAddFriend }) => {
         <div className="grid grid-cols-[10%,70%,20%] grid-rows-1 flex items-center rounded-lg ml-[5%] w-[90%] h-10 bg-[#333333] mb-6">
           <HiMagnifyingGlass size={20} className="ml-3" />
           <div className="text-[#9E9E9E] ml-4">Search</div>
-          <HiMiniBars4 size={20} className="text-[#9E9E9E] ml-8" />
         </div>
-        <RequestCard />
-        <RequestCard />
-        <RequestCard />
-        <RequestCard />
+        <RequestCard
+          profile="A"
+          title="Group A"
+          description="Request from Identity A"
+        />
+        <RequestCard
+          profile="B"
+          title="Group B"
+          description="Request from Identity Sangjun"
+        />
       </div>
     </>
   );

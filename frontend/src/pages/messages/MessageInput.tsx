@@ -21,7 +21,7 @@ export default function MesssageInput({
           className="absolute right-4 top-1/2 transform -translate-y-1/2"
           onClick={() => console.log('메시지 보냄!')}
         >
-          <IoMdSend className="w-8 h-8 text-[#14C0FF]" />
+          <IoMdSend className="w-8 h-8 text-[#3A7940]" />
         </button>
       </div>
     </div>

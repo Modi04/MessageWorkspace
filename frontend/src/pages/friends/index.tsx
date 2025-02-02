@@ -65,7 +65,7 @@ export default function Index() {
         <p>Loading...</p>
       ) : (
         <UserList
-          title="Members"
+          title="Group A > Identity A > Members"
           contents={members?.members ?? [profileExample]} // null 병합 연산자로 안전하게 처리
           setIsSelected={setIsSelected}
           setValue={setFriendsIdentity}

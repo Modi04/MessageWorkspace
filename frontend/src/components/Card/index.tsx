@@ -17,7 +17,7 @@ const Card: React.FC<CardProps> = ({ message }) => {
 
   return (
     <div className="w-full bg-black h-[90px] flex items-center place-contents-between p-4">
-      <div className="text-[#E6E0E9] rounded-full bg-[#4F378B] flex items-center justify-center font-mono w-12 h-12">
+      <div className="text-[#E6E0E9] rounded-full bg-[#3A7940] flex items-center justify-center font-mono w-12 h-12">
         {message.profile}
       </div>
       <div className="flex-1 text-ellipsis overflow-hidden whitespace-nowrap text-start overflow-hidden px-4">

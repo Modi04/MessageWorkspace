@@ -115,9 +115,9 @@ const MessagePage = () => {
         >
           <IoIosArrowBack size="32" />
         </button>
-        <div className="text-xl font-bold">Friend</div>
-        <div className="text-lg font-mono flex items-center justify-center w-10 h-10 bg-[#14C0FF] rounded-full">
-          U
+        <div className="text-xl font-bold">Ethan</div>
+        <div className="text-lg font-mono flex items-center justify-center w-10 h-10 bg-[#3A7940] rounded-full">
+          A
         </div>
       </div>
       <div className="p-4 pt-[90px]">
@@ -127,11 +127,7 @@ const MessagePage = () => {
               <MessageBox
                 key={message.id}
                 isUser={message.user_id === jowtObject?.executor_public_key}
-                profile={
-                  message.user_id === jowtObject?.executor_public_key
-                    ? 'F'
-                    : 'U'
-                }
+                profile={'E'}
                 contents={message.content}
               />
             ),

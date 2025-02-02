@@ -1,32 +1,26 @@
 export const contextExample = [
   {
     profile: 'A',
-    name: 'Context A',
+    name: 'Group A',
     id: 'BHca7BkvBkL9z46XxvyMbNZGTkukw6HJbVU59MF56XiJ',
-    description: 'Description for Context A',
+    description: 'A7f9XkQwzJ2mPlV3t85YbCrdNsG6e4c',
   },
   {
     profile: 'B',
-    name: 'Context B',
+    name: 'Group B',
     id: 'A2rCwkTtWuBGwgjU6aWKxsabsaSujZovqmig2wbTVpAi',
-    description: 'Description for Context B',
+    description: 'KjXwZqTpF9m7vLb2a3g85yNRdcSe46A',
   },
   {
     profile: 'C',
-    name: 'Context C',
+    name: 'Group C',
     id: 'C3sdWkTtZuBGyhjU6bXWxsqdbsaTukwpwmjh3wcTVqBi',
-    description: 'Description for Context C',
+    description: 'm7VxZkQj2F9lPw3T85yBCrdNsGaE46t',
   },
   {
     profile: 'D',
-    name: 'Context D',
+    name: 'Group D',
     id: 'D4teQkRrXuBGzhjU6cXWxtydbsaFukwpzmkh4xdUVpCi',
-    description: 'Description for Context D',
-  },
-  {
-    profile: 'E',
-    name: 'Context E',
-    id: 'E5ufRkSsYuBGkhjU6dXWxuyebsaGukxpzmli5yeVWpDi',
-    description: 'Description for Context E',
+    description: 'QtPf9M7vXZkJ2wLb3a85YNRdcSGAe46',
   },
 ];

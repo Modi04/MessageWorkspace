@@ -14,7 +14,7 @@ export default function AddFriendsPopup({
     <div className="flex justify-center items-center">
       <button
         onClick={() => setShowPopup(true)}
-        className="flex items-center justify-center fixed bottom-[15vh] left-[60vw] bg-[#E8DEF9] text-[#65558F] w-40 h-16 rounded-[15px]"
+        className="flex items-center justify-center fixed bottom-[15vh] left-[60vw] bg-[#CDFF7B] text-black [#00000] w-40 h-16 rounded-[15px]"
       >
         <HiPencil className="text-2xl mr-2" />
         <p className="text-medium">Add friends</p>
@@ -22,7 +22,7 @@ export default function AddFriendsPopup({
 
       {showPopup && (
         <div className="fixed inset-0 bg-black bg-opacity-20 flex justify-center items-center">
-          <div className="bg-[#ECE6F0] rounded-[15px] flex flex-col w-72">
+          <div className="bg-[#CDFF7B] rounded-[15px] flex flex-col w-72">
             <h2 className="text-black text-lg mt-6 ml-5">
               Add Friend - Are you sure?
             </h2>
@@ -36,12 +36,12 @@ export default function AddFriendsPopup({
             <div className="mb-1 flex ml-[167px] mt-[-10px] text-sm">
               <button
                 onClick={() => setShowPopup(false)}
-                className="mt-4 px-4 py-2 text-[#65558F]"
+                className="mt-4 px-4 py-2 text-black"
               >
                 No
               </button>
               <button
-                className="mt-4 px-4 py-2 text-[#65558F]"
+                className="mt-4 px-4 py-2 text-black"
                 onClick={() => setShowPopup(false)}
               >
                 Yes

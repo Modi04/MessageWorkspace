@@ -80,7 +80,7 @@ export default function Index() {
         <p>Loading...</p>
       ) : (
         <UserList
-          title="Chats"
+          title="Group A > Identity A > Chats"
           contents={chats ? chats.chats : chatExample}
           setIsSelected={setIsSelected}
           setValue={setChatId}
