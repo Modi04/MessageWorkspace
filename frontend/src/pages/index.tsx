@@ -13,14 +13,14 @@ export default function Index() {
   return (
     <div className="flex h-screen items-center justify-center">
       <div className="flex flex-col items-center">
-        <div className="w-[200px] h-[100px] bg-black"></div>
+        <img className="w-3/4" src="logo.png" alt="Loading..." />
         <ClientLogin
           getNodeUrl={getNodeUrl}
           getApplicationId={getStorageApplicationId}
           sucessRedirect={() => router.push('/friends')}
         />
         <button
-          className="mt-4 w-full bg-green-500 text-black px-4 py-2"
+          className="mx-auto my-2 w-[266px] h-[46px] bg-[#FFFFFF] hover:bg-[#888888] text-black px-4 py-2 rounded-md"
           onClick={() => router.push('/setProfile')}
         >
           V2 Login!

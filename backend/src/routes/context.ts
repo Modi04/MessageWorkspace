@@ -1,6 +1,12 @@
 import express, { Request, Response, Router } from "express";
 
-import { viewContextMembers, viewUserContexts, viewUserIdentities, welcome } from "../controller/context";
+import {
+  addIdentityToContext,
+  viewContextMembers,
+  viewUserContexts,
+  viewUserIdentities,
+  welcome,
+} from "../controller/context";
 
 class ContextRoutes {
   router = Router();
@@ -14,6 +20,7 @@ class ContextRoutes {
     this.router.get("/user", viewUserContexts);
     this.router.get("/identities", viewUserIdentities);
     this.router.get("/members", viewContextMembers);
+    this.router.get("/identity", addIdentityToContext);
   }
 }
 

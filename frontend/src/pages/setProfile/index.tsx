@@ -66,17 +66,17 @@ export default function Index() {
 
   return (
     <div className=" w-full h-screen flex flex-col items-center justify-center text-black">
-      <div className="w-5/6 h-2/3 overflow-y-auto scrollbar-hidden border-2 rounded-3xl border-[#A4FF11]">
+      <div className="w-full h-full overflow-y-auto scrollbar-hidden rounded-3xl">
         {isContextSelected ? (
           <UserList
-            title="Select your profile"
+            title="Select your identity"
             contents={identityExample}
             setIsSelected={setIsIdentitySelected}
             setValue={setIdentity}
           />
         ) : (
           <UserList
-            title="Select your organization"
+            title="Select your group"
             contents={contextExample}
             setIsSelected={setIsContextSelected}
             setValue={setCaliContext}

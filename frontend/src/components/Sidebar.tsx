@@ -1,59 +1,70 @@
 import { HiMagnifyingGlass } from 'react-icons/hi2';
 import { HiMiniBars4 } from 'react-icons/hi2';
-import { IoCheckmarkCircleSharp } from 'react-icons/io5';
-import { BsFillXCircleFill } from 'react-icons/bs';
-import { IoMdClose } from 'react-icons/io';
+import { IoCheckmarkCircle } from 'react-icons/io5';
+import { IoClose } from 'react-icons/io5';
+import { IoCloseCircle } from 'react-icons/io5';
 import { createIdentity } from '../api/icp/context';
 
 const handleButtonClick = () => {
   createIdentity();
 };
-const RequestCard = () => {
+const RequestCard = ({ profile, title, description }) => {
   return (
-    <div
-      className="grid grid-cols-[25%,50%,10%,15%] grid-rows-2 w-[90%] ml-[5%] h-[85px] bg-[#1D1B20] rounded-2xl border border-[#CAC4D0]
-    flex items-center mb-2"
-    >
-      <div className="row-span-2 flex items-center justify-center w-12 h-12 rounded-full bg-[#D3C1FF] font-bold text-black ml-5">
-        A
+    <div className="flex w-full h-[100px] border-b border-[#4A4A4B] justify-between items-center mb-2 px-6">
+      <div className="flex">
+        <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#3A7940] text-white">
+          {profile}
+        </div>
+
+        <div className="flex flex-col items-start text-start ml-4">
+          <div className="font-medium">{title}</div>
+          <div className="text-sm text-gray-400">{description}</div>
+        </div>
       </div>
-      <div className="mt-3 ml-3">Name</div>
-      <BsFillXCircleFill size={24} className="text-white mt-10" />
-      <IoCheckmarkCircleSharp
-        cursor="pointer"
-        onClick={handleButtonClick}
-        size={28}
-        className="text-lime-400 mt-10"
-      />
-      <div className="text-sm mb-5 ml-3">Purpose of request</div>
+
+      <div className="flex items-center gap-2">
+        <IoCloseCircle size={36} className="text-white cursor-pointer" />
+        <IoCheckmarkCircle
+          cursor="pointer"
+          onClick={handleButtonClick}
+          size={36}
+          className="text-[#CDFF7B] cursor-pointer"
+        />
+      </div>
     </div>
   );
 };
 
-const Sidebar = ({ setShow }) => {
+const Sidebar = ({ setShow, setShowAddFriend }) => {
   return (
     <>
-      <div className="absolute top-0 right-0 bg-[#3D3D3F] w-[65%] h-[100%] rounded-3xl">
-        <div className="w-full flex justify-between items-center">
-          <div className="text-[#E6E0E9] text-[23px] ml-4 mb-4 pt-6">
-            Friend Request
-          </div>
-          <div className="mr-4 mt-2">
-            <button onClick={() => setShow(false)}>
-              <IoMdClose size={32} />
-            </button>
-          </div>
+      <div className="absolute top-0 right-0 bg-[#3D3D3F] w-[70%] h-[100%]">
+        <div className="w-full flex justify-between items-center px-6 my-4">
+          <div className="text-[#E6E0E9] text-[23px]">Requests</div>
+          <button
+            onClick={() => {
+              setShow(false);
+              setShowAddFriend(true);
+            }}
+          >
+            <IoClose size={32} color="grey" />
+          </button>
         </div>
 
         <div className="grid grid-cols-[10%,70%,20%] grid-rows-1 flex items-center rounded-lg ml-[5%] w-[90%] h-10 bg-[#333333] mb-6">
           <HiMagnifyingGlass size={20} className="ml-3" />
           <div className="text-[#9E9E9E] ml-4">Search</div>
-          <HiMiniBars4 size={20} className="text-[#9E9E9E] ml-8" />
         </div>
-        <RequestCard />
-        <RequestCard />
-        <RequestCard />
-        <RequestCard />
+        <RequestCard
+          profile="A"
+          title="Group A"
+          description="Request from Identity A"
+        />
+        <RequestCard
+          profile="B"
+          title="Group B"
+          description="Request from Identity Sangjun"
+        />
       </div>
     </>
   );

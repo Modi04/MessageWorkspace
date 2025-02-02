@@ -81,6 +81,35 @@ export function viewContextMembers(req: Request, res: Response): Response {
   return res.json({ members: context.members });
 }
 
+export function addIdentity(req: Request, res: Response): Response {
+  const contextId = req.query.contextId as string;
+
+  // Check if userId is provided
+  if (!contextId) {
+    return res.status(400).json({ error: "Missing contextId in query parameters" });
+  }
+
+  // Check if user exists
+  const context = db.contexts[contextId];
+  if (!context) {
+    return res.status(404).json({ error: "Context not found" });
+  }
+
+  return res.json({ members: context.members });
+}
+
+export function addIdentityToContext() {
+  const identity = {
+    id: "newIdentity1",
+    address: "0xabcdefabcdefabcdef",
+    name: "John, Smart Contract Developer",
+    profile: "J",
+    description: "Specializes in developing secure smart contracts.",
+  };
+  // 컨텍스트의 멤버 목록에 새로운 Identity 추가
+  db.contexts["Afg66vswxKBQvxmmXgrEA1Y9zxA2NuNWkxFEKpJAFLsL"].members.push(identity);
+}
+
 // Create a new context and link it to a user
 // export const createContextForUser = (userId: string, context: Context) => {
 //   const user = db.users[userId];

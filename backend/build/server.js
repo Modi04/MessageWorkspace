@@ -20,11 +20,8 @@ exports.db = {
 // Database 초기화 함수
 function initializeDatabase() {
     exports.db.users = {
-        "0x123456789abcdef": {
-            context: ["7pKhBjjqHTf5w1GsgShrXipFpxhfCbVBpwmPyA747rr", "0xabcdef987654321"],
-        },
-        identity3: {
-            context: ["0x987654321abcdef"],
+        FK44Dtq1pjoJQ5gUNN7WutDAND1DPMwwJTtMob8QQtjz: {
+            context: ["Afg66vswxKBQvxmmXgrEA1Y9zxA2NuNWkxFEKpJAFLsL"],
         },
     };
     exports.db.contexts = {
@@ -33,31 +30,52 @@ function initializeDatabase() {
             name: "Blockchain Enthusiasts",
             members: [
                 {
-                    id: "FK44Dtq1pjoJQ5gUNN7WutDAND1DPMwwJTtMob8QQtjz",
+                    id: "exampleIdentity1",
                     address: "0x123456789abcdef",
-                    name: "Alice",
+                    name: "Alice, Project Manager",
                     profile: "A",
                     description: "Blockchain developer and enthusiast.",
                 },
                 {
-                    id: "identity3",
+                    id: "exampleIdentity2",
                     address: "0xabcdef123456789",
-                    name: "aasdas",
+                    name: "Bob, Engineer",
                     profile: "B",
                     description: "AI researcher focused on NLP.",
                 },
+                {
+                    id: "exampleIdentity3",
+                    address: "0xabcdef123456789",
+                    name: "Charlie, Designer",
+                    profile: "C",
+                    description: "Creative designer specializing in UI/UX for digital platforms.",
+                },
+                {
+                    id: "exampleIdentity4",
+                    address: "0xabcdef123456789",
+                    name: "Diana, Accounting Manager",
+                    profile: "D",
+                    description: "Expert in financial planning and budget management.",
+                },
             ],
         },
-        "0xabcdef987654321": {
-            id: "0xabcdef987654321",
-            name: "AI Researchers",
+        EmqW1j1ZVHALukjQa8zShf9kvkoRZquXXFQQDMYKZkx6: {
+            id: "EmqW1j1ZVHALukjQa8zShf9kvkoRZquXXFQQDMYKZkx6",
+            name: "Example Context2",
             members: [
                 {
-                    id: "identity1",
+                    id: "exampleIdentity5",
                     address: "0x123456789abcdef",
-                    name: "Bob",
-                    profile: "C",
-                    description: "AI researcher focused on NLP.",
+                    name: "Ethan, Backend Guru",
+                    profile: "E",
+                    description: "Specialist in building scalable server-side solutions and API integrations.",
+                },
+                {
+                    id: "exampleIdentity6",
+                    address: "0x123456789abcdef",
+                    name: "Fiona, Data Scientist",
+                    profile: "F",
+                    description: "Passionate about extracting insights from data using machine learning and statistical analysis.",
                 },
             ],
         },

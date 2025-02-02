@@ -12,7 +12,11 @@ export default function DefaultLayout({
 
   return (
     <div className="w-full h-screen bg-black text-white">
-      {route.pathname === '/' ? <div></div> : <Footer />}
+      {route.pathname === '/' || route.pathname.includes('/messages') ? (
+        <div></div>
+      ) : (
+        <Footer />
+      )}
       <div>{children}</div>
     </div>
   );
