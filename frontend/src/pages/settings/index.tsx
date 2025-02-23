@@ -39,8 +39,8 @@ export default function Index() {
         <div className="flex items-center justify-center">Edit Profile</div>
       </div>
 
-      <div className="mb-8">
-        <div className="mt-6 mb-2 grid grid-cols-[20%,80%] grid-rows-2 flex items-center bg-[#1C1C1D] h-[105.48px] text-[17px]">
+      <div className="mb-6">
+        <div className="mt-0 mb-2 grid grid-cols-[20%,80%] grid-rows-2 flex items-center bg-[#1C1C1D] h-[105.48px] text-[17px]">
           <div className="row-span-2 ml-5 flex justify-center items-center w-[75px] h-[75px] bg-black rounded-full text-white">
             <IoIosCamera className="w-10 h-10" />
           </div>
@@ -67,7 +67,7 @@ export default function Index() {
         </p>
       </div>
 
-      <div className="mb-8">
+      <div className="mb-6">
         <div className="bg-[#1C1C1D] h-[50.29px] flex items-center mb-2">
           <input
             type="text"
@@ -89,9 +89,9 @@ export default function Index() {
 
       <div className="grid grid-rows-2 flex items-center bg-[#1C1C1D] h-[101.14px] mb-11 text-[17px]">
         <div className="flex items-center relative">
-          <p className="ml-4">Change Number</p>
+          <p className="ml-4">Identity</p>
           <div className="gap-2 flex text-[#EBEBF599] ml-auto mr-3">
-            <p>+82 123 456 789_</p>
+            <p>7xviG3QceSKgPC3tJZb2gkhJVVtw</p>
             <IoIosArrowForward size={20} className="mt-1" />
             <div className="absolute bottom-[-16px] left-0 w-full border-b-[0.5px] border-[#545458A6]"></div>
           </div>
