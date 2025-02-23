@@ -14,7 +14,7 @@ export default function AddFriendsPopup({
     <div className="flex justify-center items-center">
       <button
         onClick={() => setShowPopup(true)}
-        className="flex items-center justify-center fixed bottom-[15vh] left-[60vw] bg-[#CDFF7B] text-black [#00000] w-40 h-16 rounded-[15px]"
+        className="flex items-center justify-center fixed bottom-[15vh] left-[55vw] bg-[#CDFF7B] text-black [#00000] w-40 h-16 rounded-[15px]"
       >
         <HiPencil className="text-2xl mr-2" />
         <p className="text-medium">Add friends</p>

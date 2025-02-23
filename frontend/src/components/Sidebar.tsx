@@ -5,10 +5,8 @@ import { IoClose } from 'react-icons/io5';
 import { IoCloseCircle } from 'react-icons/io5';
 import { createIdentity } from '../api/icp/context';
 
-const handleButtonClick = () => {
-  createIdentity();
-};
-const RequestCard = ({ profile, title, description }) => {
+
+const RequestCard = ({ profile, title, description, setShow, setShowAddFriend }) => {
   return (
     <div className="flex w-full h-[100px] border-b border-[#4A4A4B] justify-between items-center mb-2 px-6">
       <div className="flex">
@@ -26,7 +24,10 @@ const RequestCard = ({ profile, title, description }) => {
         <IoCloseCircle size={36} className="text-white cursor-pointer" />
         <IoCheckmarkCircle
           cursor="pointer"
-          onClick={handleButtonClick}
+          onClick={() => {
+            setShow(false);
+            setShowAddFriend(true);
+          }}
           size={36}
           className="text-[#CDFF7B] cursor-pointer"
         />
@@ -59,11 +60,15 @@ const Sidebar = ({ setShow, setShowAddFriend }) => {
           profile="A"
           title="Group A"
           description="Request from Identity A"
+          setShow={setShow}
+          setShowAddFriend={setShowAddFriend}
         />
         <RequestCard
           profile="B"
           title="Group B"
           description="Request from Identity Sangjun"
+          setShow={setShow}
+          setShowAddFriend={setShowAddFriend}
         />
       </div>
     </>
